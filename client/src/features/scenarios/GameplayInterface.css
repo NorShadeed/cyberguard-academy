@@ -1,0 +1,817 @@
+/* ======================================================== */
+/* === PROJECT TITAN - THE ARENA, MONUMENTAL SCALE === */
+/* ======================================================== */
+
+.scenario-gameplay-container .versus-arena {
+   width: 100%;
+   min-height: 100vh;
+   height: auto;
+   max-width: 1800px;
+   display: flex;
+   flex-direction: column;
+   gap: 30px;
+   padding: 100px 0 80px 0;
+   box-sizing: border-box;
+   position: relative;
+   animation: cinematic-fade-in 1s ease forwards;
+   overflow-y: visible;
+}
+
+.scenario-gameplay-container .scenario-threat-zone {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   gap: 5px;
+   padding-top: 0px;
+}
+
+.scenario-gameplay-container .scenario-threat-card {
+   width: 1000px;
+   height: 600px;
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 50px;
+   box-sizing: border-box;
+   /* Make sure this path is correct relative to your public folder */
+   background-image: url('/public/images/threat-card-nemesis.png');
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center;
+   border: none;
+   background-color: transparent;
+   box-shadow: none;
+   transform: none;
+}
+
+.scenario-gameplay-container .scenario-threat-text {
+   font-family: 'Fira Code', monospace;
+   font-size: 1.18rem;
+   font-weight: 780;
+   line-height: 1.5;
+   letter-spacing: 1px;
+   text-align: center;
+   color: #fffefe;
+   white-space: normal;
+   word-wrap: break-word;
+   max-width: 65%;
+}
+
+.scenario-gameplay-container .scenario-response-zone {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   position: relative;
+   gap: 25px;
+}
+
+.scenario-gameplay-container .scenario-player-hand {
+   display: flex;
+   justify-content: center;
+   gap: 40px;
+   perspective: 3000px;
+}
+
+.scenario-gameplay-container .scenario-response-card-wrapper {
+   opacity: 0;
+   animation: scenario-deal-card 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes scenario-deal-card {
+   from {
+      opacity: 0;
+      transform: translateY(150px) rotateX(-60deg);
+   }
+
+   to {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg);
+   }
+}
+
+.scenario-gameplay-container .response-card {
+   width: 280px;
+   height: 445px;
+   cursor: pointer;
+   position: relative;
+   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   transform-style: preserve-3d;
+   /* Make sure this path is correct relative to your public folder */
+   background-image: url('/public/images/response-card-bg.png');
+   background-size: cover;
+   background-position: center;
+   border: none;
+   background-color: transparent;
+}
+
+.scenario-gameplay-container .response-card:not(.disabled):hover {
+   transform: translateY(-30px) scale(1.1) rotateX(10deg);
+   filter: brightness(1.2) drop-shadow(0 30px 20px rgba(0, 0, 0, 0.8));
+}
+
+.scenario-gameplay-container .response-card.disabled {
+   opacity: 0.5;
+   filter: saturate(0.5);
+   pointer-events: none;
+}
+
+/* Legacy styles removed to fix conflict */
+
+.scenario-gameplay-container .response-card.playing {
+   animation: play-titan-card 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+   pointer-events: none;
+}
+
+@keyframes play-titan-card {
+   from {
+      transform: translateY(-20px) scale(1.1) rotateX(10deg);
+      z-index: 100;
+   }
+
+   to {
+      transform: translateY(-28vh) scale(0.8) rotateZ(5deg);
+      opacity: 1;
+   }
+}
+
+/* === HUD STYLES === */
+.hud-container {
+   position: absolute;
+   top: 1px;
+   left: 50%;
+   transform: translateX(-50%);
+   width: 100%;
+   max-width: 1200px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 20px;
+   z-index: 100;
+   pointer-events: none;
+}
+
+.progress-bar-container {
+   flex-grow: 1;
+   height: 10px;
+   background: rgba(0, 0, 0, .3);
+   border: 1px solid var(--chimera-panel-border);
+   border-radius: 5px;
+   backdrop-filter: blur(5px);
+   overflow: hidden;
+}
+
+.progress-bar-fill {
+   height: 100%;
+   background: linear-gradient(90deg, var(--chimera-accent), var(--chimera-glow));
+   box-shadow: 0 0 10px var(--chimera-glow);
+   transition: width .5s ease-in-out;
+   position: relative;
+}
+
+.progress-bar-fill::after {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .6), transparent);
+   animation: scan-effect 2s ease-in-out infinite;
+}
+
+@keyframes scan-effect {
+   from {
+      transform: translateX(-100%);
+   }
+
+   to {
+      transform: translateX(100%);
+   }
+}
+
+.timer-display {
+   font-family: 'Fira Code', monospace;
+   font-size: 1.8rem;
+   color: #ffc107;
+   text-shadow: 0 0 10px #ffc107;
+}
+
+/* === NEW EVIDENCE BUTTON STYLES === */
+.scenario-gameplay-container .evidence-button {
+   position: absolute;
+   bottom: 38%;
+   /* Position it right above the text box */
+   left: 50%;
+   transform: translateX(-50%);
+   padding: 8px 15px;
+   border-radius: 5px;
+   background: rgba(0, 191, 255, 0.8);
+   color: #fff;
+   border: 1px solid #00bfff;
+   font-family: 'Fira Code', monospace;
+   font-size: 0.9rem;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   transition: all 0.3s ease;
+   opacity: 0.8;
+}
+
+.scenario-gameplay-container .response-card:hover .evidence-button {
+   background: #00bfff;
+   box-shadow: 0 0 15px #00bfff;
+   transform: translateX(-50%) scale(1.05);
+   opacity: 1;
+}
+
+.scenario-gameplay-container .evidence-button:hover {
+   background: #00bfff;
+   box-shadow: 0 0 15px #00bfff;
+   transform: translateX(-50%) scale(1.05);
+   opacity: 1;
+}
+
+/* === APPLE ELEGANT EVIDENCE MODAL (Namespaced) === */
+.gp-evidence-modal-overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   background: rgba(0, 0, 0, 0.4);
+   /* Darkens the background slightly */
+   backdrop-filter: blur(10px);
+   /* Blurs the game behind it */
+   -webkit-backdrop-filter: blur(10px);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 10000;
+   animation: gp-overlay-fade-in 0.4s ease forwards;
+}
+
+@keyframes gp-overlay-fade-in {
+   from {
+      opacity: 0;
+   }
+
+   to {
+      opacity: 1;
+   }
+}
+
+.gp-evidence-modal-content {
+   width: 90%;
+   max-width: 850px;
+   max-height: 85vh;
+   display: flex;
+   flex-direction: column;
+   background: rgba(30, 32, 40, 0.75);
+   /* Deep semi-transparent grey */
+   backdrop-filter: blur(50px) saturate(180%);
+   -webkit-backdrop-filter: blur(50px) saturate(180%);
+   border: 1px solid rgba(255, 255, 255, 0.12);
+   border-radius: 24px;
+   box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+   overflow: hidden;
+   transform: scale(0.95);
+   opacity: 0;
+   animation: gp-modal-pop-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes gp-modal-pop-in {
+   to {
+      transform: scale(1);
+      opacity: 1;
+   }
+}
+
+/* Modal Header */
+.gp-evidence-modal-content h3 {
+   margin: 0;
+   padding: 24px 32px;
+   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+   font-size: 20px;
+   font-weight: 600;
+   color: #ffffff;
+   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+   background: rgba(255, 255, 255, 0.02);
+   display: flex;
+   align-items: center;
+   letter-spacing: -0.01em;
+}
+
+.gp-evidence-modal-content h3::before {
+   content: 'OBSERVATION DATA';
+   display: inline-block;
+   font-size: 10px;
+   font-weight: 700;
+   color: rgba(255, 255, 255, 0.5);
+   background: rgba(255, 255, 255, 0.1);
+   padding: 4px 8px;
+   border-radius: 6px;
+   margin-right: 12px;
+   letter-spacing: 0.5px;
+   transform: translateY(-1px);
+}
+
+.gp-evidence-modal-close {
+   position: absolute;
+   top: 20px;
+   right: 24px;
+   background: rgba(255, 255, 255, 0.1);
+   width: 32px;
+   height: 32px;
+   border-radius: 50%;
+   border: none;
+   color: rgba(255, 255, 255, 0.8);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   transition: all 0.2s ease;
+   font-size: 14px;
+}
+
+.gp-evidence-modal-close:hover {
+   background: rgba(255, 255, 255, 0.2);
+   transform: scale(1.05);
+   color: #fff;
+}
+
+/* Modal Body */
+.gp-evidence-body {
+   padding: 0;
+   flex: 1;
+   overflow-y: auto;
+   background: rgba(0, 0, 0, 0.2);
+}
+
+/* The Data/Code View */
+.gp-evidence-body pre {
+   margin: 0;
+   padding: 32px;
+   font-family: "SF Mono", "Fira Code", "Roboto Mono", monospace;
+   font-size: 13px;
+   line-height: 1.6;
+   color: #e0e0e0;
+   white-space: pre-wrap;
+   word-wrap: break-word;
+}
+
+/* Highlight specific patterns if needed, or general aesthetic */
+.gp-evidence-body pre::selection {
+   background: rgba(10, 132, 255, 0.3);
+}
+
+/* Scrollbar Styling */
+.gp-evidence-body::-webkit-scrollbar {
+   width: 10px;
+}
+
+.gp-evidence-body::-webkit-scrollbar-track {
+   background: rgba(0, 0, 0, 0.1);
+}
+
+.gp-evidence-body::-webkit-scrollbar-thumb {
+   background: rgba(255, 255, 255, 0.15);
+   border-radius: 5px;
+   border: 2px solid transparent;
+   background-clip: content-box;
+}
+
+.gp-evidence-body::-webkit-scrollbar-thumb:hover {
+   background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* === CLEAN MONOSPACE VIEWER === */
+.gp-code-editor-view {
+   padding: 24px;
+   background: rgba(0, 0, 0, 0.2);
+   /* Slightly darker inner area */
+   border-radius: 8px;
+   margin: 10px;
+}
+
+.gp-code-editor-view pre {
+   font-family: "SF Mono", "Fira Code", "Roboto Mono", monospace;
+   font-size: 13px;
+   /* Comfortable reading size */
+   line-height: 1.6;
+   color: #d0d0d0;
+   /* Soft off-white, not harsh white */
+   margin: 0;
+   white-space: pre-wrap;
+   /* Wrap lines so no horizontal scroll is forced */
+   word-break: break-all;
+}
+
+/* Optional: Slight "Code Block" styling for headers if they exist in text */
+/* But strictly text-based now */
+
+
+/* === UPDATED LAYOUT V2: HORIZONTAL DOCK === */
+.versus-arena {
+   min-height: 100vh;
+   height: auto;
+   padding-bottom: 50px;
+}
+
+.scenario-threat-zone {
+   display: flex;
+   flex-direction: column;
+   /* Stack Card + Dock */
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   gap: 20px;
+   padding-top: 0px;
+   position: relative;
+   max-width: 1600px;
+   margin: 0 auto;
+}
+
+.scenario-threat-text {
+   text-align: center;
+   margin: 0 auto;
+}
+
+/* === HORIZONTAL DOCK STYLES === */
+.scenario-gameplay-container .threat-data-dock {
+   display: flex;
+   flex-direction: row;
+   gap: 15px;
+   width: auto;
+   max-width: 1000px;
+   /* Match card width */
+   background: rgba(0, 0, 0, 0.4);
+   padding: 15px 30px;
+   border: 1px solid var(--chimera-panel-border);
+   backdrop-filter: blur(5px);
+   border-radius: 50px;
+   /* Pill shape */
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+.scenario-gameplay-container .data-action-btn {
+   width: auto;
+   font-size: 0.9rem;
+   padding: 10px 24px;
+   border-radius: 50px;
+   background: #ffffff;
+   color: #000000;
+   border: none;
+   font-family: 'Inter', sans-serif;
+   font-weight: 700;
+   cursor: pointer;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+   transition: all 0.2s ease;
+}
+
+.scenario-gameplay-container .data-action-btn:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+   background: #e6e6e6;
+}
+
+.scenario-gameplay-container .data-action-btn .icon {
+   font-size: 1rem;
+}
+
+/* === SMALLER RESPONSE CARDS === */
+.scenario-player-hand {
+   gap: 40px;
+   /* Restore gap */
+}
+
+.scenario-response-card {
+   width: 280px;
+   /* Restore original width */
+   height: 445px;
+   /* Restore original height */
+   cursor: pointer;
+   position: relative;
+   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   transform-style: preserve-3d;
+   background-image: url('/public/images/response-card-bg.png');
+   background-size: cover;
+   background-position: center;
+   border: none;
+   background-color: transparent;
+}
+
+.scenario-gameplay-container .gp-response-text-content {
+   position: absolute;
+   font-size: 1rem !important;
+   /* FORCED SMALL */
+   line-height: 1.3;
+   bottom: 6%;
+   left: 10%;
+   right: 10%;
+   height: 35%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 10px;
+   box-sizing: border-box;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 600;
+   text-align: center;
+   color: #ffffff !important;
+   /* FORCED WHITE */
+   text-shadow: none !important;
+   /* FORCED NO SHADOW */
+   transition: none !important;
+   /* KILL TRANSITION */
+}
+
+.scenario-gameplay-container .response-card:hover .gp-response-text-content {
+   color: #ffffff;
+   /* Keep white on hover */
+}
+
+/* Cleanup Sidebar styles */
+.threat-data-sidebar,
+.sidebar-header {
+   display: none;
+}
+
+.threat-data-actions {
+   display: none;
+}
+
+/* === JUDGE OVERLAY STYLES (MATCHES THEME) === */
+.gp-judge-overlay {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 5, 16, 0.95);
+   backdrop-filter: blur(15px);
+   z-index: 10000;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   animation: gp-fade-in-overlay 0.3s ease;
+}
+
+/* Diagonal scanlines overlay */
+.gp-judge-overlay::before {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+   background-size: 100% 2px, 3px 100%;
+   pointer-events: none;
+   z-index: -1;
+}
+
+.gp-judge-content {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   gap: 50px;
+   background: linear-gradient(135deg, rgba(30, 30, 40, 0.95), rgba(10, 10, 20, 0.98));
+   border: 1px solid var(--chimera-accent);
+   padding: 60px 80px;
+   border-radius: 4px;
+   box-shadow: 0 0 80px rgba(0, 255, 255, 0.15), inset 0 0 20px rgba(0, 255, 255, 0.05);
+   max-width: 1000px;
+   width: auto;
+   position: relative;
+   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 100%);
+   animation: gp-judge-enter 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Decorative top bar */
+.gp-judge-content::after {
+   content: "INCOMING TRANSMISSION // PRIORITY: ALPHA";
+   position: absolute;
+   top: -24px;
+   left: 0;
+   color: var(--chimera-accent);
+   font-family: 'Fira Code', monospace;
+   font-size: 0.8rem;
+   letter-spacing: 2px;
+   background: #000;
+   padding: 2px 10px;
+}
+
+.gp-judge-avatar {
+   width: 180px;
+   height: 180px;
+   border-radius: 4px;
+   border: 2px solid var(--chimera-accent);
+   box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+   filter: contrast(1.1) sepia(0.2) hue-rotate(180deg) saturate(1.5);
+   object-fit: cover;
+   flex-shrink: 0;
+}
+
+.gp-judge-text-box {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   gap: 25px;
+   position: relative;
+   min-width: 400px;
+   align-items: center;
+   text-align: center;
+}
+
+.gp-judge-text-box h3 {
+   margin: 0;
+   font-family: 'Orbitron', sans-serif;
+   color: #fff;
+   font-size: 2rem;
+   letter-spacing: 4px;
+   text-shadow: 0 0 15px var(--chimera-accent);
+   border-bottom: 2px solid var(--chimera-panel-border);
+   padding-bottom: 15px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 15px;
+}
+
+.gp-judge-text-box h3::after {
+   content: "STATUS: ANALYZED";
+   font-size: 0.75rem;
+   font-family: 'Fira Code', monospace;
+   color: var(--chimera-active);
+   opacity: 0.9;
+   letter-spacing: 1px;
+   margin-bottom: 5px;
+}
+
+.gp-judge-text-box p {
+   font-size: 1.2rem;
+   line-height: 1.6;
+   color: #e0e0e0;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 300;
+}
+
+.gp-judge-continue-btn {
+   align-self: center;
+   background: var(--chimera-accent);
+   color: #000;
+   border: none;
+   padding: 16px 40px;
+   font-family: 'Orbitron', sans-serif;
+   font-weight: 900;
+   font-size: 1.1rem;
+   letter-spacing: 2px;
+   cursor: pointer;
+   margin-top: 10px;
+   transition: all 0.2s ease;
+   text-transform: uppercase;
+   clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.gp-judge-continue-btn:hover {
+   background: #fff;
+   box-shadow: 0 0 30px var(--chimera-accent);
+   transform: translateY(-2px) scale(1.02);
+}
+
+@keyframes gp-fade-in-overlay {
+   from {
+      opacity: 0;
+   }
+
+   to {
+      opacity: 1;
+   }
+}
+
+@keyframes gp-judge-enter {
+   from {
+      transform: scale(0.9) translateY(30px);
+      opacity: 0;
+      filter: blur(10px);
+   }
+
+   to {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      filter: blur(0);
+   }
+}
+
+/* === APPLE ELEGANT HUD (Glassmorphism) === */
+.scenario-gameplay-container .hud-glass-panel {
+   position: absolute;
+   top: 100px;
+   /* Below Navbar */
+   left: 1050px;
+   width: auto;
+   /* Let it shrink to fit */
+   min-width: 140px;
+   /* But keep a minimum */
+   background: rgba(20, 20, 25, 0.6);
+   backdrop-filter: blur(20px);
+   -webkit-backdrop-filter: blur(20px);
+   border: 1px solid rgba(255, 255, 255, 0.08);
+   border-radius: 16px;
+   padding: 16px 20px;
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+   align-items: center;
+   /* Center everything vertically */
+   box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+   z-index: 100;
+   transition: all 0.3s ease;
+   animation: hud-slide-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.scenario-gameplay-container .hud-glass-panel:hover {
+   background: rgba(30, 30, 40, 0.7);
+   transform: translateY(2px);
+   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes hud-slide-in {
+   from {
+      transform: translateX(-30px);
+      opacity: 0;
+   }
+
+   to {
+      transform: translateX(0);
+      opacity: 1;
+   }
+}
+
+.scenario-gameplay-container .hud-metric-row {
+   display: flex;
+   flex-direction: column;
+   gap: 2px;
+   align-items: center;
+   /* Center the text label and value */
+   width: 100%;
+}
+
+.scenario-gameplay-container .hud-label-text {
+   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+   font-size: 10px;
+   font-weight: 700;
+   /* Bolder for readability at small size */
+   color: rgba(255, 255, 255, 0.4);
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   text-align: center;
+}
+
+.scenario-gameplay-container .hud-value-text {
+   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+   font-size: 18px;
+   font-weight: 600;
+   color: #ffffff;
+   letter-spacing: -0.5px;
+   display: flex;
+   align-items: baseline;
+   justify-content: center;
+   gap: 4px;
+   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.scenario-gameplay-container .hud-total {
+   font-size: 13px;
+   color: rgba(255, 255, 255, 0.3);
+   font-weight: 400;
+}
+
+.hud-divider {
+   width: 40%;
+   /* Shorter divider line */
+   height: 1px;
+   background: rgba(255, 255, 255, 0.1);
+   margin: 4px 0;
+}
+
+/* Remove old styles references */
+.hud-digital-container,
+.hud-box,
+.hud-progress-fill,
+.hud-container {
+   display: none;
+}

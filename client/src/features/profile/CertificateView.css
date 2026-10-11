@@ -1,0 +1,206 @@
+/* CertificateView.css - DEDICATED PAGE EDITION */
+
+.cert-full-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* Start from top to avoid navbar overlap */
+    min-height: 100vh;
+    background-color: #0b1120;
+    /* Dark background */
+    padding: 120px 2rem 5rem 2rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Background Effects */
+.cert-full-page-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.05), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cert-page-actions {
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    z-index: 100;
+}
+
+.cert-display-wrapper {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+    /* Let the template decide size, but constrain max */
+    max-width: 1000px;
+}
+
+/* Override Template styling for this page context */
+.cert-display-wrapper .certificate-container {
+    /* Scale it up slightly for the dedicated page view if needed */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+    /* Make it pop */
+    transition: transform 0.3s ease;
+}
+
+/* Footer / Action Area */
+.cert-page-footer {
+    margin-top: 3rem;
+    z-index: 100;
+    perspective: 1000px;
+}
+
+/* Buttons */
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transform: translateX(-5px);
+}
+
+.download-btn-large {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: #0ea5e9;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.download-btn-large:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(14, 165, 233, 0.4);
+    background: #38bdf8;
+}
+
+/* Adjust wrapper on smaller screens */
+@media (max-width: 1200px) {
+    .cert-display-wrapper .certificate-container {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .cert-page-actions {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 2rem;
+        align-self: flex-start;
+    }
+
+    .cert-full-page-container {
+        padding-top: 6rem;
+        /* Navbar space */
+    }
+
+    .cert-display-wrapper {
+        padding: 0;
+        margin-bottom: 2rem;
+    }
+
+    /* Important: Overwrite the transform that scales it up */
+    .cert-display-wrapper .certificate-container {
+        transform: scale(0.9);
+        width: 100%;
+    }
+}
+
+/* === PRINT STYLES === */
+@media print {
+    @page {
+        margin: 0;
+        size: auto;
+    }
+
+    .no-print,
+    .navbar,
+    .app-background,
+    .cert-page-actions,
+    .cert-page-footer,
+    .back-btn,
+    .download-btn-large {
+        display: none !important;
+    }
+
+    /* Reset Page Containers */
+    .cert-full-page-container {
+        padding: 0;
+        margin: 0;
+        background: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .cert-display-wrapper {
+        padding: 0;
+        margin: 0;
+        transform: none !important;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cert-display-wrapper .certificate-container {
+        transform: none !important;
+        box-shadow: none !important;
+        max-width: 100%;
+        max-height: 100%;
+        /* Ensure it fits nicely on A4 */
+        width: auto;
+        height: auto;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.cert-error {
+    color: #ef4444;
+}

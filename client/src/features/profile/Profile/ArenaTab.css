@@ -1,0 +1,505 @@
+/* ========================================================================
+   ARENA TAB - APPLE ELEGANT CYBER
+   High-end glassmorphism, soft gradients, refined typography
+   ======================================================================== */
+
+.arena-ladder-container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ========== STATS HEADER (APPLE HERO STYLE) ========== */
+.arena-stats-header {
+    margin-bottom: 3rem;
+}
+
+/* Current Arena Highlight Card */
+.current-arena-card {
+    background: rgba(30, 30, 35, 0.6);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 32px;
+    padding: 3.5rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle background mesh for Hero */
+.current-arena-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 80%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(0, 122, 255, 0.15), transparent 60%);
+    filter: blur(60px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.arena-rank-badge {
+    width: 100px;
+    height: 100px;
+    border-radius: 28px;
+    /* Smooth rounded square */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+    z-index: 1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.arena-badge-icon {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 0.25rem;
+}
+
+.arena-rank {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+.arena-title-section {
+    flex: 1;
+    z-index: 1;
+}
+
+.current-arena-name {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.02em;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+}
+
+.arena-tagline {
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+/* Stats Grid (Widgets) */
+.arena-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.arena-stat-card {
+    background: rgba(35, 35, 40, 0.7);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    transition: transform 0.2s ease;
+    min-height: 180px;
+    /* Increased height to prevent clipping */
+}
+
+.arena-stat-card:hover {
+    transform: translateY(-4px);
+    background: rgba(45, 45, 50, 0.8);
+}
+
+.arena-stat-icon {
+    font-size: 1.8rem;
+    color: #007aff;
+    /* Apple Blue default */
+    background: rgba(0, 122, 255, 0.15);
+    padding: 12px;
+    border-radius: 14px;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Ensure SVG fills the space and respects color */
+.arena-stat-icon svg,
+.arena-stat-icon path {
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+}
+
+.arena-stat-icon.gold {
+    color: #ffcc00;
+    background: rgba(255, 204, 0, 0.15);
+}
+
+.arena-stat-icon.electric {
+    color: #32d74b;
+    background: rgba(50, 215, 75, 0.15);
+}
+
+.arena-stat-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.arena-stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.01em;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+}
+
+.arena-stat-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+/* ========== MAIN HEADER ========== */
+.arena-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.arena-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    letter-spacing: -0.01em;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+}
+
+.crown-icon {
+    color: #ffcc00;
+}
+
+.arena-header p {
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+/* ========== ARENA LADDER ========== */
+.ladder-path {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+    /* Tighter Apple-like lists */
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Ladder Line Restored */
+.ladder-path::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    bottom: 2rem;
+    left: 50%;
+    width: 2px;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.05),
+            rgba(255, 255, 255, 0.2) 20%,
+            rgba(255, 255, 255, 0.2) 80%,
+            rgba(255, 255, 255, 0.05));
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+/* ========== ARENA TIER CARD ========== */
+.arena-tier {
+    position: relative;
+    z-index: 1;
+}
+
+/* Connector (Subtle) */
+.arena-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.arena-connector svg {
+    font-size: 0.7rem;
+}
+
+.arena-card-wrapper {
+    position: relative;
+}
+
+.arena-card-visual {
+    width: 100%;
+    min-height: 280px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 28px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    overflow: hidden;
+}
+
+/* Smooth dark overlay */
+.arena-card-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.2) 0%,
+            rgba(0, 0, 0, 0.6) 60%,
+            rgba(0, 0, 0, 0.8) 100%);
+    z-index: 1;
+}
+
+.arena-tier.unlocked .arena-card-visual:hover {
+    transform: scale(1.01);
+}
+
+/* ========== CURRENT ARENA ========== */
+.arena-tier.current .arena-card-visual {
+    border: 2px solid #007aff;
+    /* Apple Blue active state */
+    box-shadow: 0 20px 60px rgba(0, 122, 255, 0.2);
+}
+
+.current-pulse {
+    display: none;
+    /* Too gamey, removed for elegance */
+}
+
+/* ========== LOCKED STATE ========== */
+.arena-tier.locked .arena-card-visual {
+    filter: grayscale(100%) brightness(0.6);
+    opacity: 0.8;
+}
+
+.lock-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    /* Heavy frosted glass for locked */
+}
+
+.lock-content {
+    text-align: center;
+    background: rgba(30, 30, 30, 0.6);
+    padding: 24px 48px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+}
+
+.lock-icon {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 12px;
+}
+
+.lock-text {
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+}
+
+/* ========== ARENA CONTENT ========== */
+.arena-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem;
+    gap: 1.2rem;
+}
+
+.arena-header-badge {
+    margin-bottom: 0.5rem;
+}
+
+.arena-number {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 16px;
+    border-radius: 100px;
+}
+
+.arena-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+}
+
+.arena-description {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.05rem;
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+/* XP Requirement Pill */
+.xp-requirement {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 0.8rem 1.8rem;
+    border-radius: 100px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+}
+
+.xp-icon {
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+/* ========== PROGRESS SECTION ========== */
+.progress-section {
+    width: 100%;
+    max-width: 440px;
+    margin-top: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: flex-end;
+}
+
+.progress-percentage {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #007aff;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+}
+
+.progress-remaining {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+}
+
+.progress-track {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #007aff;
+    border-radius: 100px;
+    position: relative;
+    /* No shine, keeping it flat and clean */
+}
+
+/* Max Arena Badge */
+.max-arena-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(255, 204, 0, 0.15);
+    color: #ffcc00;
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 204, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .current-arena-card {
+        padding: 2rem;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .arena-content {
+        padding: 1.5rem;
+    }
+
+    .arena-name {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,1424 @@
+/* Replace the old 'body' rule with this */
+.home-page-container {
+    font-family: 'Courier New', monospace;
+    background: #000;
+    /* This black background is now contained to the homepage */
+    color: #00FFFF;
+    overflow-x: hidden;
+    cursor: crosshair;
+    width: 100%;
+}
+
+/* === LOADING SCREEN === */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease-out;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-text {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    color: #00FFFF;
+    letter-spacing: 5px;
+    animation: loading-pulse 1.5s infinite;
+}
+
+/* Also, make the particle canvas relative to our new container */
+.home-page-container #particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at center, rgba(0, 20, 40, 0.3), rgba(0, 0, 0, 1));
+}
+
+/* The rest of your homepage styles (.hero-section, etc.) don't need to change */
+/* because they are already children of the new container. */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at center, rgba(0, 20, 40, 0.3), rgba(0, 0, 0, 1));
+}
+
+/* ============================================= */
+/* === HERO SECTION - PIXEL BUILDING === */
+/* ============================================= */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* Added vignette/fade to bottom for smooth transition */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 1) 100%), url('../../assets/resources/hero-background.png') center center no-repeat;
+    background-size: cover;
+}
+
+.hero-title-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* DELETED: .hero-frame-bg and keyframes frame-glow if they are no longer needed, assuming we want clean apple look */
+.hero-frame-bg {
+    display: none;
+    /* Hide the glitchy frame background */
+}
+
+.glitch-title {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    /* Apple-style tight tracking */
+    color: #fff;
+    text-align: center;
+    margin-top: 120px;
+
+    /* Elegant Gradient Text */
+    background: linear-gradient(180deg, #FFFFFF 20%, rgba(255, 255, 255, 0.7) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    /* Subtle Glow instead of Glitch */
+    text-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+
+    position: relative;
+    z-index: 2;
+    cursor: default;
+    user-select: none;
+    transform: translateZ(0);
+    /* Hardware accel for crispness */
+}
+
+/* Remove Glitch Pseudo-elements */
+.glitch-title::before,
+.glitch-title::after {
+    display: none;
+}
+
+.hacker-text {
+    font-size: 1.5rem;
+    color: #fff;
+    text-shadow: none;
+    margin-top: 20px;
+    min-height: 2rem;
+}
+
+.build-instruction {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    color: #fff;
+    text-shadow: none;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ============================================= */
+/* HEROES SECTION - ORIGINAL DESIGN             */
+/* ============================================= */
+
+/* ============================================= */
+/* HEROES SECTION - APPLE ELEGANT DESIGN        */
+/* ============================================= */
+
+.heroes-section {
+    padding: 100px 20px;
+    background: linear-gradient(180deg, #000 0%, rgba(0, 20, 40, 0.8) 50%, #000 100%);
+    position: relative;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+/* Override orbitron with clean font */
+.section-title {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    /* Tight tracking like Apple */
+    color: #fff;
+    text-shadow: none;
+    margin-bottom: 20px;
+    text-transform: none;
+    /* No forced uppercase */
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.heroes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-card {
+    background: rgba(255, 255, 255, 0.05);
+    /* Very subtle glass */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* Subtle border */
+    border-radius: 24px;
+    /* Apple-style large radius */
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.hero-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-image-container {
+    width: 100%;
+    height: 320px;
+    margin: 0;
+    border-radius: 0;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    /* Remove old borders */
+    box-shadow: none;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.hero-card:hover .hero-image {
+    transform: scale(1.05);
+}
+
+.hero-title {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 24px 30px 8px 30px;
+    color: #fff;
+    text-shadow: none;
+    letter-spacing: -0.01em;
+}
+
+.hero-role {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    /* Muted text */
+    margin: 0 30px 20px 30px;
+    font-style: normal;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.hero-script {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    margin: 0 30px 36px 30px;
+    font-weight: 400;
+}
+
+.hero-card:hover .hero-script {
+    opacity: 1;
+}
+
+/* ============================================= */
+/* TIMELINE SECTION                             */
+/* ============================================= */
+
+.timeline-section {
+    padding: 100px 20px;
+    background: linear-gradient(180deg, #000 0%, rgba(48, 25, 52, 0.8) 50%, #000 100%);
+    position: relative;
+}
+
+
+.timeline-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #00FFFF, #FF0080);
+    transform: translateX(-50%);
+    box-shadow: 0 0 20px #00FFFF;
+}
+
+.timeline-item {
+    --card-glow: rgba(0, 245, 212, 0.35);
+    --card-glow-strong: rgba(0, 245, 212, 0.6);
+}
+
+.guardian-card[data-guardian="strategist"] {
+    --card-accent: #ff006e;
+    --card-glow: rgba(255, 0, 110, 0.35);
+    --card-glow-strong: rgba(255, 0, 110, 0.6);
+}
+
+.guardian-card[data-guardian="arbiter"] {
+    --card-accent: #a855f7;
+    --card-glow: rgba(168, 85, 247, 0.35);
+    --card-glow-strong: rgba(168, 85, 247, 0.6);
+}
+
+.guardian-card:hover {
+    transform: translateY(-20px) scale(1.02);
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.5),
+        0 0 0 1px var(--card-accent),
+        0 0 60px var(--card-glow),
+        inset 0 0 60px rgba(255, 255, 255, 0.02);
+}
+
+.guardian-card:hover::before {
+    left: 100%;
+}
+
+/* GUARDIAN GLOW ORB */
+.guardian-glow {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.15;
+    transition: all 0.6s;
+    pointer-events: none;
+    background: var(--card-glow-strong);
+}
+
+.guardian-card:hover .guardian-glow {
+    opacity: 0.35;
+    transform: translate(-50%, -50%) scale(1.3);
+}
+
+/* GUARDIAN FRAME */
+.guardian-frame {
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================= */
+/* GUARDIAN IMAGE - PREMIUM FRAME               */
+/* ============================================= */
+
+.guardian-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
+}
+
+.guardian-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+    transition: all 0.5s ease;
+    filter: contrast(1.05) saturate(1.1);
+}
+
+.guardian-card:hover .guardian-image {
+    transform: scale(1.08);
+    filter: contrast(1.1) saturate(1.2) brightness(1.05);
+}
+
+/* ============================================= */
+/* GUARDIAN INFO - ELEGANT TYPOGRAPHY           */
+/* ============================================= */
+
+.guardian-info {
+    text-align: center;
+    position: relative;
+}
+
+.guardian-name {
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 10px 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 30px var(--card-glow);
+}
+
+.guardian-role {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--card-accent);
+    padding: 8px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.3);
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px var(--card-glow);
+}
+
+.guardian-quote {
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 25px 0;
+    padding: 0 10px;
+    position: relative;
+}
+
+.guardian-quote::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 4rem;
+    color: var(--card-accent);
+    opacity: 0.15;
+    font-family: Georgia, serif;
+}
+
+/* SPECIALTY TAGS */
+.guardian-specialty {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.specialty-tag {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 25px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.4s ease;
+    backdrop-filter: blur(5px);
+}
+
+.guardian-card:hover .specialty-tag {
+    border-color: var(--card-accent);
+    color: var(--card-accent);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 15px var(--card-glow);
+}
+
+/* ============================================= */
+/* RESPONSIVE                                   */
+/* ============================================= */
+
+@media (max-width: 1200px) {
+    .guardians-showcase {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .guardian-card {
+        max-width: 420px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .guardians-section {
+        padding: 80px 20px;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .guardian-image-wrapper {
+        width: 160px;
+        height: 160px;
+    }
+
+    .guardian-card {
+        padding: 35px 25px;
+    }
+
+    .guardian-name {
+        font-size: 1.5rem;
+    }
+}
+
+/* ============================================= */
+/* TIMELINE SECTION                             */
+/* ============================================= */
+
+.timeline-section {
+    padding: 100px 20px;
+    background: linear-gradient(180deg, #000 0%, rgba(48, 25, 52, 0.8) 50%, #000 100%);
+    position: relative;
+}
+
+.timeline-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 4px;
+    height: 0;
+    /* Start width 0 height for animation */
+    background: linear-gradient(to bottom, #00FFFF, #FF0080);
+    transform: translateX(-50%);
+    box-shadow: 0 0 20px #00FFFF;
+    animation: drawLine 2.5s ease-out forwards;
+    transform-origin: top;
+}
+
+@keyframes drawLine {
+    to {
+        height: 100%;
+    }
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 80px;
+    width: 35%;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-item:nth-child(odd) {
+    left: 15%;
+    padding-right: 60px;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+    padding-left: 60px;
+    text-align: left;
+}
+
+.timeline-node {
+    position: absolute;
+    top: 20px;
+    width: 60px;
+    height: 60px;
+    background: #000;
+    border: 3px solid #00FFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 30px #00FFFF, inset 0 0 20px rgba(0, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.timeline-node:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 50px #B0FF00, inset 0 0 30px rgba(176, 255, 0, 0.3);
+    border-color: #B0FF00;
+}
+
+.timeline-item:nth-child(odd) .timeline-node {
+    right: -30px;
+}
+
+.timeline-item:nth-child(even) .timeline-node {
+    left: -30px;
+}
+
+/* === MOBILE TIMELINE === */
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 20px;
+        /* Move line to left */
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 50px !important;
+        /* Space for line */
+        padding-right: 0 !important;
+        text-align: left !important;
+        margin-bottom: 40px;
+        left: 0 !important;
+    }
+
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0;
+    }
+
+    .timeline-node {
+        left: -9px !important;
+        /* Center on the left line (20px left - 30px half width + adjustment) -> actually 20px - 30px = -10 relative to item? No. */
+        /* The item is at left:0. The line is at left: 20px of the container? 
+           Let's just position node relative to item.
+        */
+        right: auto !important;
+        left: -10px !important;
+        /* Visual tweak */
+        width: 40px;
+        height: 40px;
+        top: 0;
+    }
+
+    /* TARGETING THE SVG ICON INSIDE THE NODE */
+    .timeline-node svg {
+        font-size: 1rem;
+    }
+
+    .timeline-content {
+        padding: 20px;
+    }
+}
+
+.timeline-icon {
+    font-size: 1.5rem;
+    color: #00FFFF;
+    transition: all 0.3s ease;
+}
+
+.timeline-node:hover .timeline-icon {
+    color: #B0FF00;
+    transform: scale(1.2);
+}
+
+.timeline-content {
+    background: rgba(10, 15, 20, 0.95);
+    /* Deep dark background */
+    border: 1px solid #00FFFF;
+    /* Crisp Cyan Border */
+    border-radius: 24px;
+    /* Elegant rounded corners */
+    padding: 30px;
+    backdrop-filter: blur(20px);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+    /* Subtle initial glow */
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-content:hover {
+    border-color: #00FFFF;
+    transform: translateY(-8px);
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+.timeline-frame {
+    width: 100%;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    /* Match outer curvature */
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    /* Subtle inner frame */
+    box-shadow: none;
+    /* Clean look */
+}
+
+.timeline-content h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 12px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    letter-spacing: 1px;
+}
+
+.timeline-content p {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+    /* Clean readable font */
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    opacity: 1;
+}
+
+/* ============================================= */
+/* FEATURES SECTION - APPLE ELEGANT             */
+/* ============================================= */
+
+.features-section {
+    padding: 100px 20px 140px 20px;
+    background: linear-gradient(180deg, #000 0%, rgba(0, 20, 40, 0.8) 50%, #000 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card.apple-card {
+    background: rgba(20, 20, 23, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: default;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    /* Center horizontally */
+    text-align: center;
+    /* Center text */
+}
+
+.feature-card.apple-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(30, 30, 35, 0.8);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.feature-icon-wrapper {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.feature-card.apple-card:hover .feature-icon-wrapper {
+    transform: scale(1.1) rotate(-5deg);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.feature-content h3 {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+}
+
+.feature-content p {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Specific Glows for Cards */
+.feature-card.apple-card:nth-child(1):hover .feature-icon-wrapper {
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+    border-color: rgba(0, 255, 255, 0.4);
+}
+
+.feature-card.apple-card:nth-child(2):hover .feature-icon-wrapper {
+    box-shadow: 0 0 30px rgba(255, 0, 128, 0.3);
+    border-color: rgba(255, 0, 128, 0.4);
+}
+
+.feature-card.apple-card:nth-child(3):hover .feature-icon-wrapper {
+    box-shadow: 0 0 30px rgba(0, 255, 128, 0.3);
+    border-color: rgba(0, 255, 128, 0.4);
+}
+
+.feature-card.apple-card:nth-child(4):hover .feature-icon-wrapper {
+    box-shadow: 0 0 30px rgba(255, 196, 0, 0.3);
+    border-color: rgba(255, 196, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@keyframes loading-pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ============================= */
+/* === MODAL POPUP STYLING === */
+/* ============================= */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: rgba(0, 10, 20, 0.9);
+    border: 2px solid #00FFFF;
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 700px;
+    text-align: center;
+    box-shadow: 0 0 30px #00FFFF;
+    position: relative;
+    backdrop-filter: blur(10px);
+    animation: popIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #00FFFF;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.modal-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 15px;
+    text-shadow: none;
+}
+
+.modal-description {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.6;
+    text-shadow: none;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #FF0080;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.modal-close:hover {
+    transform: scale(1.2);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* ============================================= */
+/* === CERTIFICATE VERIFICATION SECTION === */
+/* ============================================= */
+
+.verify-section {
+    padding: 120px 20px;
+    background: #050505;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.verify-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.verify-card-frame {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 60px 40px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.5);
+}
+
+.verify-description {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+    color: #8899a6;
+    margin-bottom: 40px;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* INPUT GROUP - Clean & Minimal */
+.verify-input-group {
+    display: flex;
+    gap: 0;
+    /* Connected input and button */
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 8px;
+    max-width: 500px;
+    margin: 0 auto 40px auto;
+    transition: all 0.3s ease;
+}
+
+.verify-input-group:focus-within {
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05);
+}
+
+.verify-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 12px 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    color: #fff;
+    outline: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.verify-input::placeholder {
+    color: #445566;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.verify-button {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.5px;
+}
+
+.verify-button:hover:not(:disabled) {
+    background: #f0f0f0;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+.verify-button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* === RESULT CARD - OFFICIAL STYLE === */
+.verify-result {
+    margin-top: 20px;
+    text-align: left;
+    background: #0a0a0a;
+    border: 1px solid #333;
+    padding: 0;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    animation: slideUpFade 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.verify-result.valid {
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.verify-result.invalid {
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.result-content-official {
+    padding: 40px;
+    position: relative;
+}
+
+/* Official Stamp Watermark */
+.official-stamp {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 3rem;
+    color: rgba(16, 185, 129, 0.05);
+    border: 4px solid rgba(16, 185, 129, 0.05);
+    padding: 10px 20px;
+    text-transform: uppercase;
+    transform: rotate(-15deg);
+    pointer-events: none;
+    letter-spacing: 10px;
+}
+
+.verify-result.invalid .official-stamp {
+    display: none;
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.result-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.status-indicator.success {
+    background: #10b981;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+}
+
+.status-indicator.error {
+    background: #ef4444;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
+}
+
+/* GRID LAYOUT FOR DATA */
+.result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.result-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.result-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+    font-weight: 600;
+}
+
+.value {
+    font-size: 1rem;
+    color: #eee;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+}
+
+.value.mono {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+}
+
+.value.highlight {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.error-msg {
+    color: #ef4444;
+    font-size: 1rem;
+}
+
+.verify-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: #444;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.verify-close-btn:hover {
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================= */
+/* TRAINING PREVIEW SECTION - APPLE ELEGANT     */
+/* ============================================= */
+
+.training-preview-section {
+    padding: 100px 20px;
+    background: linear-gradient(180deg, #000 0%, rgba(0, 20, 40, 0.8) 50%, #000 100%);
+    position: relative;
+}
+
+.section-subtitle {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 700px;
+    margin: 0 auto 60px auto;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.training-features-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto 60px auto;
+    align-items: stretch;
+}
+
+.training-feature-block {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.tf-content h3 {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.tf-content p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.tf-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tf-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+.tf-list li::before {
+    content: "✓";
+    color: #00d4ff;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.tf-visual.pattern-grid {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 10px 10px;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.training-preview-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.training-preview-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    /* Horizontal layout for compact stacking */
+    align-items: center;
+    text-align: left;
+}
+
+.training-preview-card:hover {
+    transform: translateX(10px);
+    /* Side hover for list view */
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0;
+    margin-right: 20px;
+    filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.3));
+    transition: transform 0.4s ease;
+}
+
+.training-preview-card h3 {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.training-preview-card p {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0;
+}
+
+.card-badge {
+    margin-left: auto;
+    /* Push to right */
+    padding: 6px 12px;
+    background: rgba(0, 212, 255, 0.1);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 20px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    font-weight: 600;
+    color: #00d4ff;
+    text-transform: uppercase;
+}
+
+.section-cta-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.apple-cta-button {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.2);
+}
+
+.apple-cta-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+    .training-features-container {
+        grid-template-columns: 1fr;
+    }
+
+    .training-preview-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .card-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .card-badge {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+}

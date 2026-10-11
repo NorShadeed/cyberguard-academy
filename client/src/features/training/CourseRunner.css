@@ -1,0 +1,44 @@
+/* CourseRunner.css - Global wrapper for all simulations */
+
+.course-runner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+    /* Below Navbar (1000) */
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: transparent;
+    /* Transparent container */
+    pointer-events: none;
+    /* Let clicks pass through to sim if needed, but sim usually covers it */
+}
+
+/* Run body wrapper */
+.runner-body {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+    /* Re-enable clicks */
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.runner-body {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* Push content down from the top edge */
+    padding-top: 80px;
+    box-sizing: border-box;
+    /* Ensure scroll if content is tall */
+    overflow-y: auto;
+}

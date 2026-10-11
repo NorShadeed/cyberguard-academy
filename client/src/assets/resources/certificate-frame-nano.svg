@@ -1,0 +1,57 @@
+<svg width="2000" height="1414" viewBox="0 0 2000 1414" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <pattern id="hexGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M20 0L37.32 10V30L20 40L2.68 30V10L20 0Z" fill="none" stroke="#38bdf8" stroke-width="0.5" opacity="0.1"/>
+        </pattern>
+        <linearGradient id="metalGrad" x1="0" y1="0" x2="2000" y2="1414" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#0f172a"/>
+            <stop offset="0.5" stop-color="#1e293b"/>
+            <stop offset="1" stop-color="#0f172a"/>
+        </linearGradient>
+        <radialGradient id="glowCenter" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#0e7490" stop-opacity="0.1"/>
+            <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Base Background -->
+    <rect width="2000" height="1414" fill="url(#metalGrad)"/>
+    <rect width="2000" height="1414" fill="url(#hexGrid)"/>
+    <rect width="2000" height="1414" fill="url(#glowCenter)"/>
+
+    <!-- Outer Tech Frame -->
+    <path d="M50 50 H1950 V1364 H50 Z" stroke="#38bdf8" stroke-width="2" fill="none" filter="url(#neonGlow)"/>
+    <path d="M40 40 H1960 V1374 H40 Z" stroke="#0ea5e9" stroke-width="1" opacity="0.5"/>
+
+    <!-- Corner Accents Top-Left -->
+    <path d="M50 150 V50 H150" stroke="#38bdf8" stroke-width="8" stroke-linecap="square" filter="url(#neonGlow)"/>
+    <path d="M30 30 L80 80" stroke="#0ea5e9" stroke-width="1"/>
+
+    <!-- Corner Accents Top-Right -->
+    <path d="M1850 50 H1950 V150" stroke="#38bdf8" stroke-width="8" stroke-linecap="square" filter="url(#neonGlow)"/>
+
+    <!-- Corner Accents Bottom-Right -->
+    <path d="M1950 1264 V1364 H1850" stroke="#38bdf8" stroke-width="8" stroke-linecap="square" filter="url(#neonGlow)"/>
+
+    <!-- Corner Accents Bottom-Left -->
+    <path d="M150 1364 H50 V1264" stroke="#38bdf8" stroke-width="8" stroke-linecap="square" filter="url(#neonGlow)"/>
+
+    <!-- Inner Circuit Lines -->
+    <path d="M150 50 L200 100 H1800 L1850 50" stroke="#38bdf8" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M150 1364 L200 1314 H1800 L1850 1364" stroke="#38bdf8" stroke-width="1" fill="none" opacity="0.5"/>
+    
+    <!-- Side Nodes -->
+    <rect x="35" y="657" width="30" height="100" fill="#0f172a" stroke="#38bdf8" stroke-width="2" filter="url(#neonGlow)"/>
+    <rect x="1935" y="657" width="30" height="100" fill="#0f172a" stroke="#38bdf8" stroke-width="2" filter="url(#neonGlow)"/>
+
+    <!-- Title Underline Tech -->
+    <path d="M800 350 H1200" stroke="#38bdf8" stroke-width="1" stroke-dasharray="10 20"/>
+
+</svg>

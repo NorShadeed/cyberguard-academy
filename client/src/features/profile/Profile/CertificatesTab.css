@@ -1,0 +1,1023 @@
+/* CertificatesTab.css - RECOVERY VERSION */
+:root {
+    --cert-primary: #0ea5e9;
+    --cert-accent: #3b82f6;
+    --cert-success: #10b981;
+    --cert-dark-bg: #0b1120;
+    --cert-card-bg: rgba(15, 23, 42, 0.6);
+}
+
+.certificates-container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* === HEADER === */
+.certificates-container .section-header-compact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    padding-bottom: 2.5rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
+    max-width: 800px;
+}
+
+.certificates-container .header-icon-box {
+    width: 72px;
+    height: 72px;
+    background: rgba(14, 165, 233, 0.1);
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: var(--cert-primary);
+}
+
+.certificates-container .header-text-box h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0;
+    color: #fff;
+}
+
+.certificates-container .header-text-box p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+/* === SECTIONS === */
+.certificates-container .certificates-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.certificates-container .section-title {
+    color: #fff;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+/* === EARNED CARD (ADAPTED FOR REVERTED STRUCTURE) === */
+/* === EARNED CARD (PREMIUM REDESIGN) === */
+/* === EARNED CERTIFICATIONS SECTION === */
+.certificates-container .certificates-grid-container {
+    width: 100%;
+}
+
+/* Grid definition moved to flex in summary card section */
+
+.certificates-container .certificate-card {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.certificates-container .certificate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* Watermark Icon */
+.certificates-container .cert-main-icon {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    font-size: 12rem;
+    color: rgba(255, 255, 255, 0.02);
+    transform: rotate(-15deg);
+    pointer-events: none;
+    margin: 0;
+    filter: none;
+}
+
+/* Header Spacer to push content down below Ribbon */
+.certificates-container .cert-card-header {
+    height: 3rem;
+    margin-bottom: 1rem;
+}
+
+.certificates-container .card-ribbon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #10b981;
+    padding: 8px 16px;
+    border-bottom-left-radius: 16px;
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.certificates-container .card-ribbon span {
+    letter-spacing: 0.1em;
+    background: none;
+    padding: 0;
+}
+
+/* === NEW: CERTIFICATE SUMMARY CARD (RESIZED & LEFT ALIGNED) === */
+.certificates-container .cert-summary-card {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    width: 100%;
+    max-width: 340px;
+    /* Much smaller */
+    margin: 0;
+    /* Left align (assuming flex/grid parent aligns start) */
+}
+
+.certificates-container .certificates-grid {
+    display: flex;
+    /* Changed from grid to flex for tighter packing or keep grid with start */
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: flex-start;
+    /* Align left */
+    width: 100%;
+}
+
+.certificates-container .cert-summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Glow effecc behind icon */
+.certificates-container .cert-summary-card::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    /* Smaller glow */
+    height: 80px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.certificates-container .cert-summary-icon {
+    font-size: 3rem;
+    /* Smaller icon */
+    color: #10b981;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.3));
+}
+
+.certificates-container .cert-summary-details {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.certificates-container .cert-summary-details h3 {
+    color: #fff;
+    font-size: 1.25rem;
+    /* Smaller title */
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.certificates-container .cert-summary-id {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.75rem;
+    /* Smaller text */
+    color: #64748b;
+    background: #0f172a;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.certificates-container .cert-summary-id span {
+    color: #334155;
+    font-weight: 700;
+    user-select: none;
+}
+
+/* Actions Row */
+.certificates-container .cert-actions-row {
+    display: flex;
+    flex-direction: row;
+    /* Side by side */
+    gap: 8px;
+    width: 100%;
+}
+
+.certificates-container .action-btn {
+    flex: 1;
+    /* Share space */
+    padding: 0.5rem 0.6rem;
+    /* Very compact padding */
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    /* Smaller font */
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.certificates-container .action-btn.view {
+    background: #10b981;
+    /* Brand green */
+    color: #064e3b;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    font-weight: 800;
+}
+
+.certificates-container .action-btn.view:hover {
+    background: #34d399;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);
+}
+
+.certificates-container .action-btn.download {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+}
+
+.certificates-container .action-btn.download:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* === MODAL === */
+.cert-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 10, 20, 0.92);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.cert-modal-content {
+    position: relative;
+    max-width: 1000px;
+    width: 100%;
+    background: transparent;
+    animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cert-modal-close {
+    position: absolute;
+    top: -50px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s;
+    backdrop-filter: blur(10px);
+}
+
+.cert-modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg) scale(1.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.certificates-container .cert-card-body {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 2rem;
+}
+
+.certificates-container .cert-card-body h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    background: linear-gradient(to right, #fff, #94a3b8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.certificates-container .cert-id {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.3);
+    color: #94a3b8;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.certificates-container .cert-date {
+    color: #10b981;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.certificates-container .cert-date::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #10b981;
+}
+
+/* Actions */
+.certificates-container .cert-card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.certificates-container .action-btn {
+    padding: 0.8rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.certificates-container .action-btn.view {
+    background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.certificates-container .action-btn.view:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.certificates-container .action-btn.download {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e2e8f0;
+}
+
+.certificates-container .action-btn.download:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
+}
+
+
+/* === PATHS SECTION (THE PERFECTED CSS) === */
+.certificates-container .paths-list {
+    width: 100%;
+    max-width: 1400px;
+}
+
+.certificates-container .path-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.certificates-container .path-content-wrapper {
+    padding: 3rem;
+}
+
+.certificates-container .path-info-header {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.certificates-container .path-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.certificates-container .path-title-row h3 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.certificates-container .badge {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.certificates-container .badge.success {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+}
+
+.certificates-container .badge.warning {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+}
+
+.certificates-container .path-header-text p {
+    color: #94a3b8;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+.certificates-container .path-icon {
+    display: none;
+    /* Simplify header based on user pic */
+}
+
+/* === TIMELINE === */
+.certificates-container .path-steps-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    position: relative;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+/* Perfect Line Alignment */
+.certificates-container .path-steps-container::before {
+    content: '';
+    position: absolute;
+    /* 2rem top padding + (90px node wrapper height / 2) = 32px + 45px = 77px center. 
+       Line 3px thick -> top 75.5px. Round to 75px or 76px. */
+    top: 75px;
+    left: 10%;
+    right: 10%;
+    height: 3px;
+    background: #1e293b;
+    z-index: 0;
+}
+
+.certificates-container .path-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.certificates-container .step-node-wrapper {
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.certificates-container .step-node {
+    width: 50px;
+    height: 50px;
+    background: #0f172a;
+    border: 4px solid #1e293b;
+    border-radius: 50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: 0 0 0 8px #0f172a;
+    /* Mask line */
+}
+
+.certificates-container .path-step.completed .step-node {
+    border-color: #10b981;
+    background: #064e3b;
+    color: #34d399;
+}
+
+.certificates-container .step-type-badge {
+    position: absolute;
+    top: -5px;
+    background: #1e293b;
+    color: #94a3b8;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 800;
+    text-transform: uppercase;
+    z-index: 3;
+}
+
+.certificates-container .path-step.completed .step-type-badge {
+    background: #10b981;
+    color: #fff;
+}
+
+.certificates-container .step-card {
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.certificates-container .step-title {
+    color: #fff;
+    font-weight: 700;
+    margin: 0.5rem 0;
+}
+
+.certificates-container .step-desc {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.certificates-container .step-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.certificates-container .status-text.done {
+    color: #10b981;
+    font-weight: 800;
+}
+
+/* Sidebar */
+.certificates-container .path-progress-sidebar {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.certificates-container .continue-btn {
+    background: #0ea5e9;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .certificates-container .path-steps-container {
+        grid-template-columns: 1fr;
+    }
+
+    .certificates-container .path-steps-container::before {
+        width: 3px;
+        height: auto;
+        top: 40px;
+        bottom: 40px;
+        left: 40px;
+        right: auto;
+    }
+
+    .certificates-container .path-step {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .certificates-container .step-node-wrapper {
+        width: 80px;
+        height: auto;
+    }
+}
+
+/* === MISSING HEADER STYLES === */
+.certificates-container .step-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.certificates-container .step-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--cert-primary);
+    text-transform: uppercase;
+}
+
+.certificates-container .step-xp {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* === EARNED CERTIFICATE REDESIGN - APPLE ELEGANT === */
+.certificates-container .cert-summary-card {
+    background: linear-gradient(180deg, rgba(10, 25, 50, 0.85) 0%, rgba(5, 15, 30, 0.95) 100%);
+    /* Rich Dark Blue */
+    border: 1px solid rgba(100, 150, 255, 0.15);
+    /* Subtle Blue Border */
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    width: 100%;
+    max-width: 360px;
+    margin: 0;
+    overflow: visible;
+    /* Allow glow to bleed slightly if needed, generally hidden is safer for borders */
+    overflow: hidden;
+}
+
+/* Subtle gradient overlay for depth */
+.certificates-container .cert-summary-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+}
+
+.certificates-container .cert-summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Elegant Icon Container */
+.certificates-container .cert-summary-icon-wrapper {
+    width: 90px;
+    height: 90px;
+    /* Soft Gradient Apple Style */
+    background: linear-gradient(135deg, #34C759 0%, #30B350 100%);
+    /* Apple Green */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 20px rgba(52, 199, 89, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.certificates-container .cert-summary-icon {
+    font-size: 2.8rem;
+    color: #fff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Typography */
+.certificates-container .cert-summary-details h3 {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+    /* Tighter tracking like Apple */
+    text-transform: none;
+    /* Remove uppercase */
+    text-shadow: none;
+    background: none;
+    -webkit-text-fill-color: #fff;
+}
+
+.certificates-container .cert-summary-id {
+    font-family: "SF Mono", "Menlo", "Monaco", "Courier New", monospace;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    /* Muted text */
+    background: rgba(255, 255, 255, 0.05);
+    /* Extremely subtle bg */
+    padding: 6px 12px;
+    border-radius: 8px;
+    /* Rounded corners */
+    margin-bottom: 2.5rem;
+    border: none;
+    box-shadow: none;
+    letter-spacing: 0;
+}
+
+.certificates-container .cert-summary-id span {
+    color: rgba(255, 255, 255, 0.4);
+    margin-right: 6px;
+    font-weight: 500;
+}
+
+/* Actions Row - Minimalist Buttons */
+.certificates-container .cert-actions-row {
+    gap: 12px;
+    width: 100%;
+}
+
+.certificates-container .action-btn {
+    padding: 14px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: -0.2px;
+    border-radius: 12px;
+    /* Smooth corners */
+    font-weight: 600;
+    transition: all 0.2s ease;
+    text-transform: none;
+    /* Normal case */
+}
+
+/* Primary Action - Apple Blue */
+.certificates-container .action-btn.view {
+    background: #007AFF;
+    /* Apple System Blue */
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
+    border: none;
+}
+
+.certificates-container .action-btn.view:hover {
+    background: #006ce6;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(0, 122, 255, 0.4);
+}
+
+/* Secondary Action - Glass */
+.certificates-container .action-btn.download {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    /* No border for cleaner look */
+    color: #fff;
+    backdrop-filter: blur(10px);
+}
+
+.certificates-container .action-btn.download:hover {
+    color: #fff;
+    border: none;
+}
+
+/* === COMING SOON STYLES === */
+.certificates-container .playlist-card.coming-soon {
+    opacity: 0.7;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+
+.certificates-container .coming-soon-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+    border-radius: 12px;
+}
+
+.certificates-container .coming-soon-overlay span {
+    background: #00d4ff;
+    color: #000;
+    font-weight: 800;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    transform: rotate(-10deg);
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+}
+
+.certificates-container .badge.coming-soon-badge {
+    background: rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.7rem;
+}
+
+/* === EMPTY STATE & LOCKED CERTIFICATE PREVIEW === */
+.certificates-container .empty-certs {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: rgba(15, 23, 42, 0.3);
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    margin: 2rem auto;
+    max-width: 600px;
+}
+
+.certificates-container .empty-certs p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.02em;
+}
+
+.certificates-container .empty-certs .sub-text {
+    display: block;
+    font-size: 1rem;
+    color: #94a3b8;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.certificates-container .locked-cert-display {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    filter: grayscale(0.8) brightness(0.6);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.certificates-container .locked-cert-display:hover {
+    filter: grayscale(0.5) brightness(0.75);
+    opacity: 0.85;
+    transform: scale(1.02);
+}
+
+/* Lock overlay for the certificate preview */
+/* REMOVED - User doesn't want lock icon
+.certificates-container .locked-cert-display::before {
+    content: "🔒";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    z-index: 10;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.9));
+    pointer-events: none;
+}
+*/
+
+/* Add a subtle "Complete the path to unlock" message */
+.certificates-container .locked-cert-display::after {
+    content: "Complete All Modules to Unlock";
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #64748b;
+    background: rgba(15, 23, 42, 0.8);
+    padding: 10px 24px;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}

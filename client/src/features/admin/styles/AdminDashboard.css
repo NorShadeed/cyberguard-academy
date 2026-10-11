@@ -1,0 +1,162 @@
+/* =====================================================================
+   ADMIN DASHBOARD CSS
+   Handles: Stat Panels, Chart Containers
+   ===================================================================== */
+
+/* 1. DASHBOARD ANIMATION */
+.admin-dashboard {
+    animation: fadeUp 0.6s ease-out;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 2. DASHBOARD GRID TOP */
+.dashboard-grid-top {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-panel {
+    background: var(--admin-card-bg);
+    border: var(--admin-card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    backdrop-filter: blur(20px);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.panel-icon {
+    font-size: 2rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--admin-text);
+}
+
+.stat-panel:nth-child(1) .panel-icon {
+    color: #60a5fa;
+    background: rgba(96, 165, 250, 0.1);
+}
+
+.stat-panel:nth-child(2) .panel-icon {
+    color: #f472b6;
+    background: rgba(244, 114, 182, 0.1);
+}
+
+.stat-panel:nth-child(3) .panel-icon {
+    color: #fbbf24;
+    background: rgba(251, 191, 36, 0.1);
+}
+
+.stat-panel:nth-child(4) .panel-icon {
+    color: #34d399;
+    background: rgba(52, 211, 153, 0.1);
+}
+
+.panel-info h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--admin-text-muted);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.panel-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+/* 3. CHARTS GRID */
+.dashboard-charts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.chart-container {
+    background: var(--admin-card-bg);
+    border: var(--admin-card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(20px);
+}
+
+.chart-container.wide {
+    grid-column: span 2;
+}
+
+.chart-container h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+/* 4. METRIC ROWS (System Load) */
+.metric-row {
+    margin-bottom: 1.5rem;
+}
+
+/* =====================================================================
+   5. MOBILE RESPONSIVE OVERRIDES
+   ===================================================================== */
+@media (max-width: 768px) {
+
+    /* Stack Grid Top */
+    .dashboard-grid-top {
+        grid-template-columns: 1fr;
+        /* Full width cards */
+        gap: 1rem;
+    }
+
+    .stat-panel {
+        padding: 1rem;
+    }
+
+    /* Stack Charts */
+    .dashboard-charts {
+        grid-template-columns: 1fr;
+        /* Stack vertically */
+        gap: 1rem;
+    }
+
+    .chart-container.wide {
+        grid-column: span 1;
+        /* Reset span */
+    }
+
+    .chart-container {
+        padding: 1rem;
+        overflow-x: auto;
+        /* Safety scroll */
+    }
+
+    /* Adjust Fonts */
+    .panel-value {
+        font-size: 1.5rem;
+    }
+}

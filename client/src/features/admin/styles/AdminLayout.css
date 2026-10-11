@@ -1,0 +1,269 @@
+/* =====================================================================
+   ADMIN LAYOUT CSS
+   Handles: Lock Screen, Main Shell, Header, Navigation Tabs
+   ===================================================================== */
+
+:root {
+    --admin-bg: #0b0c15;
+    --admin-card-bg: rgba(255, 255, 255, 0.03);
+    --admin-card-border: 1px solid rgba(255, 255, 255, 0.08);
+    --admin-primary: #3b82f6;
+    /* Professional Blue */
+    --admin-accent: #f59e0b;
+    /* Gold/Amber */
+    --admin-text: #f3f4f6;
+    --admin-text-muted: #9ca3af;
+    --admin-danger: #ef4444;
+    --admin-success: #10b981;
+    --font-heading: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* 1. LOCK SCREEN */
+.admin-lock-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--admin-bg);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--admin-text);
+    font-family: var(--font-heading);
+}
+
+.admin-lock-screen.scanning {
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+}
+
+.pulse-icon {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: var(--admin-primary);
+    filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
+    animation: gentlePulse 2s infinite ease-in-out;
+}
+
+@keyframes gentlePulse {
+
+    0%,
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+.scan-line {
+    width: 200px;
+    height: 2px;
+    background: #e2e8f0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.scan-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    background: var(--admin-primary);
+    animation: elegantLoad 1.5s infinite ease-in-out;
+}
+
+@keyframes elegantLoad {
+    0% {
+        left: -50%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+/* 2. MAIN SHELL */
+.admin-panel {
+    min-height: 100vh;
+    background: var(--admin-bg);
+    padding: 100px 2rem 2rem 2rem;
+    font-family: var(--font-heading);
+    color: var(--admin-text);
+}
+
+/* 3. HEADER */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--admin-card-border);
+    padding-bottom: 1.5rem;
+}
+
+.admin-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.admin-header p {
+    color: var(--admin-text-muted);
+    font-size: 0.9rem;
+}
+
+/* 4. TABS (Navigation) */
+.admin-tabs {
+    display: flex;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.5rem;
+    border-radius: 12px;
+    width: fit-content;
+    margin-bottom: 2rem;
+}
+
+.admin-tabs button {
+    background: transparent;
+    border: none;
+    color: var(--admin-text-muted);
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-tabs button:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.admin-tabs button.active {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 5. SHARED UTILS */
+.manager-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+
+.manager-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    font-size: 1.25rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn-action {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-action:hover {
+    color: #10b981;
+    border-color: #10b981;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+}
+
+/* =====================================================================
+   6. MOBILE RESPONSIVE OVERRIDES
+   ===================================================================== */
+@media (max-width: 768px) {
+
+    /* Main Shell */
+    .admin-panel {
+        padding: 80px 1rem 1rem 1rem;
+        /* Less padding */
+    }
+
+    /* Headers */
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .admin-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .manager-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .manager-header>div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Tabs - Scrollable Horizontal */
+    .admin-tabs {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        /* Space for scrollbar if visible */
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 1.5rem;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .admin-tabs button {
+        flex-shrink: 0;
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    /* Shared Utils */
+    .btn-action {
+        width: 100%;
+        justify-content: center;
+    }
+}

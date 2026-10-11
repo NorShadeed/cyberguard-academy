@@ -1,0 +1,303 @@
+/* PhishingDefense.css - Elegant Premium Defense Aesthetic */
+
+/* --- CORE LAYOUT & VARIABLES --- */
+:root {
+    --pd-glass-bg: rgba(20, 25, 35, 0.7);
+    --pd-glass-border: rgba(255, 255, 255, 0.08);
+    --pd-primary: #00d4ff;
+    --pd-danger: #ff4757;
+    --pd-success: #00ff88;
+    --pd-warning: #ffd700;
+    --pd-accent: #d946ef;
+}
+
+/* Base fade in for smoother feeling */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- PREMIUM COMPONENT: CONCEPT CARD --- */
+.concept-card {
+    background: var(--pd-glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--pd-glass-border);
+    border-left: 4px solid var(--card-color, var(--pd-primary));
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.concept-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6);
+    background: rgba(30, 35, 45, 0.8);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Elegant Sheen Effect */
+.concept-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    opacity: 0.5;
+}
+
+.concept-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.concept-icon {
+    font-size: 2.2rem;
+    color: var(--card-color, var(--pd-primary));
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.3));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.concept-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.concept-body {
+    color: #b0b3b8;
+    line-height: 1.7;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.concept-body strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* --- PREMIUM COMPONENT: FACT BOX --- */
+.fact-box {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.0));
+    border: 1px solid var(--pd-glass-border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 0;
+    position: relative;
+}
+
+.fact-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    color: var(--pd-warning);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.fact-content {
+    color: #dfe6e9;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Variants */
+.fact-box.danger {
+    border-left: 3px solid var(--pd-danger);
+}
+
+.fact-box.danger .fact-header {
+    color: var(--pd-danger);
+}
+
+.fact-box.success {
+    border-left: 3px solid var(--pd-success);
+}
+
+.fact-box.success .fact-header {
+    color: var(--pd-success);
+}
+
+.fact-box.insane {
+    border-left: 3px solid var(--pd-accent);
+    background: linear-gradient(to right, rgba(217, 70, 239, 0.05), transparent);
+}
+
+.fact-box.insane .fact-header {
+    color: var(--pd-accent);
+}
+
+/* --- INTERACTIVE ZONES --- */
+.interactive-zone {
+    background: rgba(10, 10, 12, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    margin-top: 40px;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.interactive-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    letter-spacing: 3px;
+    opacity: 0.9;
+}
+
+/* BUTTON TEST GRID */
+.phish-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.phish-btn {
+    background: #181a20;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #e0e0e0;
+    padding: 20px 30px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.phish-btn:hover {
+    background: #252830;
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+.phish-btn.reveal-active {
+    border-color: var(--pd-danger);
+    background: rgba(255, 71, 87, 0.05);
+    box-shadow: 0 0 20px rgba(255, 71, 87, 0.1);
+}
+
+.url-reveal {
+    margin-top: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: all 0.4s ease;
+}
+
+.url-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.url-reveal.safe {
+    color: var(--pd-success);
+}
+
+.url-reveal.danger {
+    color: var(--pd-danger);
+}
+
+/* --- DIAGRAMS --- */
+.cr-diagram-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding: 20px 0;
+}
+
+.diagram-step {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    width: 140px;
+    text-align: center;
+    font-size: 0.8rem;
+    position: relative;
+}
+
+.diagram-step.danger {
+    border-color: var(--pd-danger);
+    background: rgba(255, 71, 87, 0.05);
+}
+
+.step-num {
+    display: block;
+    font-family: 'Orbitron';
+    color: #555;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.diagram-arrow {
+    color: #444;
+    font-size: 1.2rem;
+}
+
+/* --- UTILITIES --- */
+.highlight-red {
+    color: var(--pd-danger);
+    font-weight: 700;
+}
+
+.code-snippet {
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* AUDIO WAVE ANIMATION (Refined) */
+.wave-bar {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 15px;
+    height: 24px;
+    align-items: center;
+}
+
+.wave-bar span {
+    width: 4px;
+    background: var(--pd-danger);
+    border-radius: 4px;
+    animation: waveAnim 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

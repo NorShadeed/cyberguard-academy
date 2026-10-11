@@ -1,0 +1,486 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@400;500;600&display=swap');
+
+/* ==========================================================================
+   1. SECURE OS DESIGN SYSTEM
+   ========================================================================== */
+:root {
+    /* --- OS Colors --- */
+    --os-bg: #000000;
+    --os-accent: #007aff;
+    /* iOS Blue */
+    --os-danger: #ff3b30;
+    /* iOS Red */
+    --os-success: #34c759;
+    /* iOS Green */
+    --os-text-primary: #ffffff;
+    --os-text-secondary: rgba(255, 255, 255, 0.6);
+    --os-text-tertiary: rgba(255, 255, 255, 0.4);
+
+    /* --- Glass Materials --- */
+    --glass-thin: rgba(255, 255, 255, 0.1);
+    --glass-thick: rgba(30, 30, 30, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.15);
+
+    /* --- Dimensions --- */
+    --phone-width: 380px;
+    --phone-height: 780px;
+    --phone-radius: 50px;
+}
+
+/* ==========================================================================
+   2. MAIN CONTAINER & RESET
+   ========================================================================== */
+/* High Specificity Global Override */
+html body #root .human-firewall-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--simulation-bg);
+    background-repeat: repeat;
+    background-size: 512px 512px;
+    background-attachment: fixed;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow: hidden;
+    padding: 100px 20px 20px 20px !important;
+    /* Force top padding */
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   3. THE PHONE CHASSIS
+   ========================================================================== */
+.hf-phone-chassis {
+    width: var(--phone-width);
+    height: var(--phone-height);
+    max-height: 90vh;
+    /* Responsive check */
+    max-width: 90vw;
+    /* Responsive check */
+    background: #000;
+    border-radius: var(--phone-radius);
+    /* Realistic Bezel & Shadow */
+    box-shadow:
+        0 0 0 12px #1a1a1a,
+        /* Inner Bezel */
+        0 0 0 14px #333,
+        /* Outer Frame */
+        0 50px 100px -20px rgba(0, 0, 0, 0.8),
+        /* Deep Shadow */
+        inset 0 0 40px rgba(255, 255, 255, 0.05);
+    /* Inner Glare */
+    position: relative;
+    /* CRITICAL FIX: Establish local stacking context so children z-index won't leak */
+    z-index: 0;
+    isolation: isolate;
+    overflow: hidden;
+    /* Hardware Buttons (Pseudo) */
+}
+
+.hf-phone-chassis::before {
+    /* Power Button */
+    content: '';
+    position: absolute;
+    right: -18px;
+    top: 200px;
+    width: 6px;
+    height: 60px;
+    background: #222;
+    border-radius: 4px;
+}
+
+.hf-phone-chassis::after {
+    /* Volume Buttons */
+    content: '';
+    position: absolute;
+    left: -18px;
+    top: 180px;
+    width: 6px;
+    height: 120px;
+    background: linear-gradient(to bottom, #222 45%, transparent 45%, transparent 55%, #222 55%);
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   4. LOCKSCREEN / OS INTERFACE
+   ========================================================================== */
+.hf-screen {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2e1065 0%, #000000 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    color: var(--os-text-primary);
+}
+
+/* Status Bar */
+.hf-status-bar {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    z-index: 100;
+}
+
+.hf-time {
+    letter-spacing: 0.5px;
+}
+
+.hf-status-icons {
+    display: flex;
+    gap: 6px;
+    font-size: 0.8rem;
+}
+
+/* Dynamic Island / Notch */
+.hf-notch {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 35px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 101;
+}
+
+/* ==========================================================================
+   5. INCOMING CALL STATE
+   ========================================================================== */
+.hf-app-call {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 20px 60px 20px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+    backdrop-filter: blur(20px);
+}
+
+.call-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.caller-avatar-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #475569 0%, #1e293b 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    color: var(--os-text-primary);
+    margin-bottom: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.caller-name {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.caller-subtitle {
+    font-size: 1.1rem;
+    color: var(--os-text-secondary);
+}
+
+/* Slide to Answer Area */
+.call-actions-incoming {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.action-btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: white;
+}
+
+.icon-decline {
+    background: var(--os-danger);
+}
+
+.icon-accept {
+    background: var(--os-success);
+}
+
+.action-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--os-text-primary);
+}
+
+/* ==========================================================================
+   6. ACTIVE CALL STATE (Transcript)
+   ========================================================================== */
+.hf-active-call {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+}
+
+.active-call-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0 30px 0;
+}
+
+.mini-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.call-timer {
+    font-size: 0.9rem;
+    color: var(--os-success);
+    font-weight: 600;
+}
+
+/* Live Transcript UI */
+.live-transcript-container {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+}
+
+.transcript-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 12px;
+}
+
+.meta-pill {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 4px 12px;
+    border-radius: 99px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--os-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.live-wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 16px;
+}
+
+.live-wave span {
+    width: 3px;
+    height: 100%;
+    background: var(--os-accent);
+    border-radius: 2px;
+    animation: wave 1s infinite ease-in-out;
+}
+
+.live-wave span:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.live-wave span:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.live-wave span:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.transcript-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--os-text-primary);
+    font-weight: 500;
+}
+
+/* In-Call Controls */
+.active-call-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.control-btn {
+    padding: 16px;
+    border-radius: 16px;
+    border: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--os-text-primary);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.btn-primary {
+    background: var(--os-accent);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0062cc;
+}
+
+.btn-hero-danger {
+    grid-column: span 2;
+    background: var(--os-danger);
+    color: white;
+    margin-top: 10px;
+}
+
+/* ==========================================================================
+   7. FEEDBACK OVERLAY
+   ========================================================================== */
+.hf-feedback-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.feedback-badge {
+    padding: 8px 16px;
+    border-radius: 99px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+}
+
+.badge-success {
+    background: rgba(52, 199, 89, 0.2);
+    color: var(--os-success);
+}
+
+.badge-fail {
+    background: rgba(255, 59, 48, 0.2);
+    color: var(--os-danger);
+}
+
+.feedback-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.feedback-desc {
+    color: var(--os-text-secondary);
+    line-height: 1.5;
+    margin-bottom: 40px;
+}
+
+.btn-next {
+    background: white;
+    color: black;
+    width: 100%;
+    padding: 16px;
+    border-radius: 16px;
+    border: none;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   8. ANIMATIONS
+   ========================================================================== */
+@keyframes wave {
+
+    0%,
+    100% {
+        height: 4px;
+        opacity: 0.5;
+    }
+
+    50% {
+        height: 16px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

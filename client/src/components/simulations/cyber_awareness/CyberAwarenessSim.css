@@ -1,0 +1,188 @@
+/* ============================================================================
+   CYBER AWARENESS SIMULATION STYLES
+   - Phishing Detective
+   - Social Engineering (Manipulator's Playbook)
+   ============================================================================ */
+
+/* MAIN SIMULATION CONTAINERS (Fixed Full Screens) */
+/* Using high specificity to override conflicts */
+html body #root .cr-simulation-desktop,
+html body #root .cr-module-desktop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999 !important;
+    /* Force on top */
+    overflow-y: auto;
+    padding-top: 150px !important;
+    /* Force padding */
+    background-color: #080b14;
+    background-image: linear-gradient(rgba(5, 7, 14, 0.9), rgba(5, 7, 14, 0.9)), url('../../../assets/lobby-bg-seamless.png');
+    background-repeat: repeat;
+    background-size: 512px 512px;
+    background-attachment: fixed;
+}
+
+/* =========================================
+   SOCIAL ENGINEERING MODULE STYLES
+   (Moved from CyberAwareness.css)
+   ========================================= */
+
+
+
+/* SMARTPHONE SIMULATOR */
+.cr-phone-screen {
+    width: 300px;
+    height: 500px;
+    background: #000;
+    border: 12px solid #333;
+    border-radius: 30px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.phone-header-bar {
+    background: #111;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.phone-content {
+    flex-grow: 1;
+    background: #1e1e1e;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sms-message {
+    max-width: 85%;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    position: relative;
+    color: #fff;
+    line-height: 1.4;
+}
+
+.sms-message.received {
+    align-self: flex-start;
+    background: #333;
+    border-bottom-left-radius: 2px;
+}
+
+.sms-message.sent {
+    align-self: flex-end;
+    background: #007aff;
+    border-bottom-right-radius: 2px;
+}
+
+.sms-sender-id {
+    font-size: 0.7rem;
+    color: #888;
+    margin-bottom: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.sms-action-row {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.sms-btn {
+    flex: 1;
+    padding: 6px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.sms-btn.block {
+    background: rgba(255, 71, 87, 0.2);
+    color: #ff4757;
+    border: 1px solid #ff4757;
+}
+
+.sms-btn.verify {
+    background: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+    border: 1px solid #2ecc71;
+}
+
+.sms-btn:hover {
+    opacity: 0.8;
+}
+
+/* PRETEXTING SCENARIO BUILDER */
+.cr-scenario-builder {
+    background: rgba(15, 23, 36, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.scenario-step {
+    border-left: 3px solid #00d4ff;
+    padding-left: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.scenario-step::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 0;
+    width: 13px;
+    height: 13px;
+    background: #00d4ff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00d4ff;
+}
+
+.scenario-step h4 {
+    color: #fff;
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+}
+
+.scenario-step p {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.scenario-tactic {
+    display: inline-block;
+    background: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-top: 10px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.scenario-tactic.dark {
+    background: rgba(255, 99, 71, 0.1);
+    color: #ff6347;
+    border-color: rgba(255, 99, 71, 0.3);
+}

@@ -1,0 +1,307 @@
+.role-select-container {
+    text-align: center;
+    position: relative;
+    animation: cinematic-fade-in 0.8s ease forwards;
+    padding-top: 120px;
+    /* Push down below global navbar */
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.role-select-title {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+}
+
+.role-select-subtitle {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-bottom: 50px;
+}
+
+.role-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.role-card {
+    width: 280px;
+    padding: 30px;
+    border: 2px solid var(--chimera-panel-border);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--chimera-panel-bg);
+}
+
+.role-card:hover {
+    transform: translateY(-15px);
+    border-color: var(--chimera-glow);
+    box-shadow: 0 0 40px var(--chimera-glow-soft);
+}
+
+.role-avatar-wrapper {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    border: 3px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.role-card:hover .role-avatar-wrapper {
+    border-color: var(--chimera-glow);
+}
+
+.role-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* --- New Styles --- */
+
+.role-card {
+    position: relative;
+    /* Ensure positioning context for badge */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.role-type-badge {
+    position: absolute;
+    top: -15px;
+    /* Pull it slightly out of the card or just at the top edge */
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    /* Pill shape */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    background: #000;
+    /* Fallback */
+}
+
+/* Tech Theme: Cyan/Purple */
+.role-type-badge.tech {
+    border: 1px solid var(--chimera-glow, #0ff);
+    color: var(--chimera-glow, #0ff);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+/* Mgmt Theme: Orange/Gold */
+.role-type-badge.mgmt {
+    border: 1px solid #ffaa00;
+    color: #ffaa00;
+    box-shadow: 0 0 15px rgba(255, 170, 0, 0.3);
+}
+
+.role-short-desc {
+    font-size: 0.95rem;
+    color: #ddd;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.role-info-btn {
+    background: transparent;
+    border: 1px solid var(--chimera-glow, #0ff);
+    color: var(--chimera-glow, #0ff);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    margin-top: 20px;
+    /* Space between title and button */
+}
+
+.role-card h3 {
+    margin-bottom: 25px;
+    text-align: center;
+    color: var(--chimera-text-primary, #fff);
+
+
+}
+
+.role-info-btn:hover {
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+/* Modal Styles */
+.role-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Ensure it covers everything including navbar */
+    animation: fade-in 0.3s ease forwards;
+}
+
+.role-modal-content {
+    background: var(--chimera-bg, #111);
+    border: 1px solid var(--chimera-glow, #0ff);
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+    position: relative;
+    animation: slide-up 0.3s ease forwards;
+    text-align: left;
+}
+
+.role-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--chimera-border, #333);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.role-modal-header h2 {
+    margin: 0;
+    color: var(--chimera-glow, #0ff);
+    font-size: 1.8rem;
+}
+
+.role-modal-badge {
+    /* Base style matching card badge but static position */
+    font-size: 0.8rem;
+    padding: 6px 15px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+    background: transparent;
+    border: 1px solid #444;
+    /* Fallback */
+    color: #aaa;
+    /* Fallback */
+    white-space: nowrap;
+}
+
+.role-modal-badge.tech {
+    border: 1px solid var(--chimera-glow, #0ff);
+    color: var(--chimera-glow, #0ff);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.role-modal-badge.mgmt {
+    border: 1px solid #ffaa00;
+    color: #ffaa00;
+    box-shadow: 0 0 15px rgba(255, 170, 0, 0.2);
+}
+
+.role-modal-section {
+    margin-bottom: 25px;
+}
+
+.role-modal-section h4 {
+    color: #888;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.role-modal-section p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #fff;
+}
+
+.focus-text {
+    font-family: monospace;
+    color: var(--chimera-accent, #ff0) !important;
+}
+
+.role-modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.modal-close-btn {
+    flex: 1;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid #666;
+    color: #ccc;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.modal-close-btn:hover {
+    border-color: #fff;
+    color: #fff;
+}
+
+.modal-select-btn {
+    flex: 2;
+    padding: 12px;
+    background: var(--chimera-glow, #0ff);
+    color: #000;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+.modal-select-btn:hover {
+    background: #fff;
+    box-shadow: 0 0 20px var(--chimera-glow, #0ff);
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,1787 @@
+/* =====================================================================
+   TRAINING LOBBY - PREMIUM VISUAL DESIGN
+   Professional B2B Training Platform
+   ===================================================================== */
+
+
+
+/* =====================================================================
+   ROOT VARIABLES
+   ===================================================================== */
+:root {
+    --color-bg-primary: #0a0e1a;
+    --color-bg-secondary: #0f1419;
+    --color-bg-elevated: #151b28;
+    --color-bg-card: #1a2332;
+
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #8b92a8;
+    --color-text-muted: #5a6278;
+
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-border-light: rgba(255, 255, 255, 0.04);
+
+    --color-primary: #00d4ff;
+    --color-success: #00ff88;
+    --color-warning: #ffd60a;
+
+    --font-primary: 'Inter', sans-serif;
+    --font-display: 'Orbitron', monospace;
+
+    --radius-sm: 0.5rem;
+    --radius-md: 0.875rem;
+    --radius-lg: 1.25rem;
+    --radius-xl: 1.5rem;
+
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =====================================================================
+   GLOBAL & LAYOUT
+   ===================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.training-lobby {
+    min-height: 100vh;
+    width: 100%;
+    /* Seamless Pixel Grid Background - Adjusted brightness */
+    background-color: #080b14;
+    /* Slightly lighter than #05070e */
+    /* Less intense dark overlay */
+    background-image:
+        linear-gradient(rgba(5, 7, 14, 0.85), rgba(5, 7, 14, 0.85)),
+        url('../../assets/lobby-bg-seamless.png');
+    background-repeat: repeat;
+    background-size: 512px 512px;
+    /* Adjust scale of the tile */
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    position: relative;
+    overflow-x: hidden;
+    padding-top: 6rem;
+}
+
+/* =====================================================================
+   ENHANCED BACKGROUND EFFECTS
+   ===================================================================== */
+.lobby-bg-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* Optional: extra grid overlay if needed, currently disabled to reduce noise */
+    background-image:
+        linear-gradient(rgba(0, 212, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.3;
+    mask-image: radial-gradient(ellipse 100% 80% at 50% 20%, black 20%, transparent 90%);
+}
+
+/* Reduced blur for sharper background */
+.lobby-bg-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(60px);
+    /* Increased blur radius makes it softer/diffuse, but user asked to "reduce the bluring". 
+       Wait, if an image is blurry, you reduce blur. If an Orb is a gradient, "reducing blur" makes it a harder circle.
+       "reduce bluring a bit on the background" -> Maybe the backdrop blur on the header?
+       The user previously said "reduce the bluring a bit on the background". 
+       I will assume they mean the backdrop blur of the header/cards or the general blurriness.
+       Actually, I will reduce the Orb blur opacity or radius. Let's make the orbs SUBTLER.
+    */
+    z-index: 0;
+    pointer-events: none;
+    animation: float 25s ease-in-out infinite;
+    opacity: 0.2;
+    /* Reduced opacity */
+}
+
+/* ... existing orb styles ... */
+
+.header-branding {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    /* Align to left */
+    text-align: left;
+    /* Ensure text is left */
+    gap: 0.5rem;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    z-index: 2;
+    padding-left: 0;
+    /* Ensure no extra padding */
+}
+
+/* ... existing styles ... */
+
+.search-controls {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+    justify-content: center;
+    /* Center the search bar */
+    margin: 0 auto;
+    /* Ensure it centers if width allows */
+    max-width: 800px;
+    /* Constrain width */
+}
+
+.orb-1 {
+    top: -20%;
+    right: 0%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.25) 0%, rgba(0, 212, 255, 0.05) 50%, transparent 70%);
+}
+
+.orb-2 {
+    bottom: -25%;
+    left: -15%;
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, rgba(157, 78, 221, 0.2) 0%, rgba(157, 78, 221, 0.05) 50%, transparent 70%);
+    animation-delay: -12s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    25% {
+        transform: translate(50px, -40px) scale(1.05);
+        opacity: 0.9;
+    }
+
+    50% {
+        transform: translate(-30px, 30px) scale(0.95);
+        opacity: 1;
+    }
+
+    75% {
+        transform: translate(40px, 20px) scale(1.02);
+        opacity: 0.95;
+    }
+}
+
+/* Additional atmospheric layer */
+.training-lobby::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 400px;
+    background: linear-gradient(180deg, rgba(0, 212, 255, 0.05) 0%, transparent 100%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* =====================================================================
+   CONTAINER
+   ===================================================================== */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+    position: relative;
+    z-index: 1;
+}
+
+/* =====================================================================
+   ENHANCED HEADER SECTION
+   ===================================================================== */
+.lobby-header {
+    padding: var(--spacing-lg) 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    /* Gamified Pixel Art Background - clearer visibility */
+    /* background:
+        linear-gradient(180deg,
+            rgba(10, 14, 26, 0.85) 0%,
+            rgba(10, 14, 26, 0.7) 60%,
+            rgba(10, 14, 26, 0.95) 100%),
+        url('../assets/header-bg-pixel.png');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat; */
+    /* backdrop-filter: blur(2px) saturate(140%);
+    border-bottom: 1px solid var(--color-border-light);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5); */
+}
+
+.header-branding {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    z-index: 2;
+}
+
+.brand-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #00d4ff 0%, #0066ff 100%);
+    border-radius: 1.125rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    color: white;
+    box-shadow:
+        0 8px 24px rgba(0, 212, 255, 0.35),
+        0 0 0 4px rgba(0, 212, 255, 0.1);
+    animation: gentle-pulse 4s ease-in-out infinite;
+    position: relative;
+}
+
+.brand-icon::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 1.25rem;
+    border: 2px solid rgba(0, 212, 255, 0.2);
+    z-index: -1;
+}
+
+@keyframes gentle-pulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 8px 24px rgba(0, 212, 255, 0.35),
+            0 0 0 4px rgba(0, 212, 255, 0.1);
+    }
+
+    50% {
+        box-shadow:
+            0 8px 32px rgba(0, 212, 255, 0.5),
+            0 0 0 6px rgba(0, 212, 255, 0.15);
+    }
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.brand-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    margin-bottom: 0.25rem;
+}
+
+.brand-subtitle {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-subtitle::before {
+    content: '//';
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+/* =====================================================================
+   PREMIUM STATS DASHBOARD
+   ===================================================================== */
+.stats-dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.stat-card {
+    background: linear-gradient(135deg, rgba(26, 31, 53, 0.5) 0%, rgba(18, 24, 43, 0.5) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--stat-accent), transparent);
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.stat-card:hover {
+    border-color: var(--color-border);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    transition: all var(--transition);
+}
+
+.stat-card:hover .stat-icon {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    width: 100%;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--font-display);
+    line-height: 1;
+    letter-spacing: -0.5px;
+}
+
+.stat-total {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 700;
+}
+
+/* Stat color accents */
+.stat-card:nth-child(1) {
+    --stat-accent: #00d4ff;
+}
+
+.stat-card:nth-child(1) .stat-icon {
+    color: #00d4ff;
+}
+
+.stat-card:nth-child(2) {
+    --stat-accent: #ffd60a;
+}
+
+.stat-card:nth-child(2) .stat-icon {
+    color: #ffd60a;
+}
+
+.stat-card:nth-child(3) {
+    --stat-accent: #00ff88;
+}
+
+.stat-card:nth-child(3) .stat-icon {
+    color: #00ff88;
+}
+
+.stat-card:nth-child(4) {
+    --stat-accent: #ff0055;
+}
+
+.stat-card:nth-child(4) .stat-icon {
+    color: #ff0055;
+}
+
+/* =====================================================================
+   SEARCH CONTROLS
+   ===================================================================== */
+.search-controls {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+    justify-content: center;
+    /* Centered Search */
+    margin-top: 2rem;
+}
+
+.search-bar {
+    flex: 1;
+    position: relative;
+    max-width: 500px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 0.875rem 3rem 0.875rem 3.25rem;
+    background: rgba(26, 31, 53, 0.4);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    color: var(--color-text-primary);
+    font-size: 0.9rem;
+    font-family: var(--font-primary);
+    transition: all var(--transition);
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: rgba(0, 212, 255, 0.5);
+    background: rgba(26, 31, 53, 0.6);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.08);
+}
+
+.search-bar input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.search-bar svg:first-child {
+    position: absolute;
+    left: 1.125rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    font-size: 1rem;
+}
+
+.clear-btn {
+    position: absolute;
+    right: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.06);
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.clear-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--color-text-primary);
+}
+
+.filter-toggle {
+    padding: 0.875rem 1.5rem;
+    background: rgba(26, 31, 53, 0.4);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    transition: all var(--transition);
+    white-space: nowrap;
+}
+
+.filter-toggle:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    background: rgba(0, 212, 255, 0.05);
+    color: var(--color-text-primary);
+}
+
+.filter-toggle.active {
+    border-color: rgba(0, 212, 255, 0.5);
+    background: rgba(0, 212, 255, 0.1);
+    color: #00d4ff;
+}
+
+/* Category Filters (Replaces old filter panel) */
+.category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+.category-pill {
+    padding: 0.5rem 1.25rem;
+    background: rgba(26, 31, 53, 0.6);
+    border: 1px solid var(--color-border-light);
+    border-radius: 2rem;
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    font-family: var(--font-primary);
+}
+
+.category-pill:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--color-border);
+    color: var(--color-text-primary);
+    transform: translateY(-2px);
+}
+
+.category-pill.active {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: #00d4ff;
+    color: #00d4ff;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.15);
+}
+
+/* =====================================================================
+   MAIN CONTENT
+   ===================================================================== */
+.lobby-main {
+    padding: var(--spacing-xl) 0;
+}
+
+.training-lobby .section-header-container {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 1rem;
+    /* Align slightly with search bar padding */
+}
+
+.training-lobby .section-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.training-lobby .section-line {
+    height: 1px;
+    width: 200px;
+    /* Short accent line */
+    background: linear-gradient(90deg, #ffffff, transparent);
+    opacity: 0.5;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* This is the container for the actual cards, preventing them from touching the sticky header */
+/* This is the container for the actual cards, preventing them from touching the sticky header */
+/* This is the container for the actual cards, preventing them from touching the sticky header */
+.course-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 COLUMNS -> SMALLER CARDS */
+    gap: 30px;
+    /* SPACE BETWEEN SQUARES */
+    margin-top: 5rem;
+    padding-bottom: 50px;
+}
+
+.course-grid-item {
+    width: 100%;
+}
+
+.course-grid-item.expanded {
+    grid-column: span 3;
+    /* EXPANDED TAKES FULL WIDTH */
+}
+
+/* ... (skipping) ... */
+
+/* Course Header */
+
+.course-header {
+    padding: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    gap: 0.75rem;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: all var(--transition);
+    position: relative;
+    z-index: 2;
+    align-items: center;
+    /* CENTER ALIGNMENT */
+}
+
+/* ... existing expanded header styles ... */
+
+.course-main-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* CENTER ALIGNMENT */
+    gap: 0.75rem;
+    flex: 1;
+}
+
+/* ... existing expanded main info styles ... */
+
+/* ... existing icon styles ... */
+
+.course-text {
+    flex: 1;
+    text-align: center;
+    /* CENTER TEXT */
+}
+
+/* Colllapsed State - SQUARE TILE */
+/* Colllapsed State - SQUARE TILE */
+/* =====================================================================
+       COURSE CARD - CYBER FRAME DESIGN
+       ===================================================================== */
+.course-card {
+    position: relative;
+    /* Using aspect ratio for square cards */
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    border: 1px solid rgba(0, 212, 255, 0.5);
+    /* Stronger outer border */
+    box-shadow:
+        inset 0 0 20px rgba(0, 212, 255, 0.1),
+        /* Inner glow */
+        0 0 15px rgba(0, 0, 0, 0.5);
+    /* Outer shadow */
+    background: rgba(12, 18, 30, 0.85);
+    /* Fallback */
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    border-radius: 6px;
+    /* Slight rounded for modern feel */
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 1;
+
+    margin: 12px;
+    /* Make the frame effectively smaller by pulling it in */
+    width: calc(100% - 24px);
+
+    /* Clip path for tech corners */
+    clip-path: polygon(0 0,
+            100% 0,
+            100% calc(100% - 20px),
+            calc(100% - 20px) 100%,
+            0 100%);
+
+    padding: 0;
+}
+
+/* BACKGROUND IMAGE LAYER (Behind content) */
+.course-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--course-bg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6;
+    transition: transform 0.6s ease, opacity 0.4s ease;
+    z-index: -2;
+}
+
+/* GRADIENT OVERLAY (Text readability) */
+.course-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            rgba(6, 11, 25, 0.1) 0%,
+            rgba(6, 11, 25, 0.8) 60%,
+            rgba(6, 11, 25, 1) 100%);
+    z-index: -1;
+    transition: opacity 0.4s ease;
+}
+
+/* Tech Border Highlights */
+.course-card .tech-border-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    opacity: 0.5;
+}
+
+/* HOVER STATE */
+.course-card:not(.expanded):hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    border-color: var(--color-primary);
+}
+
+.course-card:not(.expanded):hover::before {
+    /* transform: scale(1.1); REMOVED to fix leak artifact */
+    opacity: 0.8;
+}
+
+.course-card:not(.expanded):hover::after {
+    opacity: 0.9;
+    background: linear-gradient(180deg,
+            rgba(6, 11, 25, 0) 0%,
+            rgba(6, 11, 25, 0.6) 50%,
+            rgba(0, 212, 255, 0.15) 100%);
+}
+
+/* =====================================================================
+       EXPANDED STATE
+       ===================================================================== */
+/* =====================================================================
+       EXPANDED STATE - REFINED
+       ===================================================================== */
+.course-card.expanded {
+    aspect-ratio: auto;
+    min-height: 85vh;
+    grid-column: 1 / -1;
+    z-index: 100;
+
+    /* FIX: Make background semi-transparent so page bg shows through */
+    background: rgba(12, 18, 30, 0.4);
+    backdrop-filter: blur(8px);
+
+    border: 1px solid var(--color-primary);
+    box-shadow:
+        0 0 0 100vmax rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(0, 212, 255, 0.15);
+
+    clip-path: none;
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Align from top */
+}
+
+/* BACKGROUND IMAGE (Course-specific) */
+.course-card.expanded::before {
+    opacity: 0.5;
+    /* Visible but allows text reading */
+    filter: blur(0px);
+    /* Removed blur so image is clear as requested */
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
+
+/* GRADIENT OVERLAY (Text readability) */
+.course-card.expanded::after {
+    /* Gradient only darkens the bottom part for content */
+    background: linear-gradient(180deg,
+            rgba(6, 11, 25, 0.2) 0%,
+            rgba(6, 11, 25, 0.8) 40%,
+            rgba(6, 11, 25, 1) 100%);
+}
+
+/* 
+       NEW EXPANDED HEADER LAYOUT 
+       [ Big Title ]
+       [ Info Box ]
+    */
+.course-card.expanded .course-header {
+    flex-direction: column;
+    /* Stack vertically */
+    align-items: center;
+    /* Center everything */
+    padding: 4rem 2rem 2rem 2rem;
+    background: transparent;
+    border-bottom: none;
+    width: 100%;
+    gap: 2rem;
+}
+
+.course-card.expanded .course-main-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.course-card.expanded .course-icon {
+    font-size: 4rem;
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.course-card.expanded .course-text {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.course-card.expanded .course-title {
+    font-size: 3.5rem;
+    /* Massive Title */
+    line-height: 1.1;
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+    margin-bottom: 0;
+}
+
+.course-card.expanded .course-description {
+    font-size: 1.25rem;
+    max-width: 800px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+}
+
+/* 
+       COOL INFO BOX WITH EDGE 
+       Re-purposing .course-meta container
+    */
+.course-card.expanded .course-meta {
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 1rem;
+
+    /* The "Box" aesthetic */
+    /* Matching the collapsed view aesthetic */
+    background: rgba(6, 11, 25, 0.85);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(0, 212, 255, 0.3);
+    /* Brighter Cyan Top Border */
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+
+    padding: 1.5rem 3rem;
+    /* Wider padding for expanded view */
+    margin-top: 2rem;
+
+    clip-path: none;
+    /* remove the tech corners */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    /* Deep shadow */
+}
+
+/* Remove the old corner decorations */
+.course-card.expanded .course-meta::before,
+.course-card.expanded .course-meta::after {
+    display: none;
+}
+
+.course-card.expanded .course-stats-mini {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+    /* More space in expanded view */
+}
+
+/* Reuse the mini stat styles but scale them up slightly if needed */
+.course-card.expanded .stat-mini {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.course-card.expanded .stat-mini-label {
+    font-size: 0.8rem;
+    /* Larger label */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+    color: #a0a0a0;
+}
+
+.course-card.expanded .stat-mini-value {
+    font-size: 1.5rem;
+    /* Larger value */
+    font-weight: 700;
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.course-card.expanded .expand-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 200;
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    /* Ensure centering */
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.course-card.expanded .expand-btn:hover {
+    background: var(--color-primary);
+    color: #000;
+    border-color: var(--color-primary);
+    transform: scale(1.1);
+}
+
+
+
+
+/* Collapse Animation Fixes */
+.course-content {
+    /* Ensure content fades in nicely */
+    animation: fadeIn 0.5s ease-out 0.2s backwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- OLD STYLES REPLACED --- */
+/* Keeping the internal structure classes but overriding layout */
+
+.course-category {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+    text-shadow: 0 0 5px currentColor;
+}
+
+.course-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 0;
+    line-height: 1.2;
+}
+
+/* COLLAPSED SPECIFIC LAYOUT */
+/* COLLAPSED SPECIFIC LAYOUT - REFINED */
+.course-card:not(.expanded) .course-header {
+    height: 100%;
+    padding: 0;
+    /* Clear padding significantly */
+    justify-content: space-between;
+    /* Space between Main Info and Bottom Bar */
+    flex-direction: column;
+}
+
+/* Center the Icon and Title in the middle */
+.course-card:not(.expanded) .course-main-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    padding-top: 2.9rem;
+    /* Adjusted down slightly as requested */
+    padding-bottom: 0.5rem;
+    /* Padding only for the main content area */
+    width: 100%;
+}
+
+.course-card:not(.expanded) .course-icon {
+    font-size: 3.5rem;
+    /* Larger Icon */
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 0 15px currentColor);
+}
+
+.course-card:not(.expanded) .course-category {
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+
+
+/* ADJUST TITLE FONT */
+.course-card:not(.expanded) .course-title {
+    font-size: 1.8rem;
+    /* Increased from 1.4rem as requested */
+    line-height: 1.1;
+    margin: 0;
+}
+
+/* THE INFO BAR (Rectangle at bottom) */
+/* THE INFO BAR (Rectangle at bottom) */
+/* THE INFO BAR (Floating Glass Pill) */
+/* THE INFO BAR (Rectangle at bottom) */
+.course-card:not(.expanded) .course-meta {
+    width: 100%;
+
+    background: rgba(6, 11, 20, 0.95);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(0, 212, 255, 0.2);
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: auto;
+    /* Ensure it pushes to bottom */
+
+    position: relative;
+    z-index: 5;
+    box-shadow: none;
+}
+
+
+
+.course-card:not(.expanded) .course-stats-mini {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* Horizontal layout */
+    justify-content: space-between;
+    /* Spread evenly */
+    align-items: center;
+    margin-bottom: 0;
+    gap: 1rem;
+}
+
+.course-card:not(.expanded) .stat-mini {
+    display: flex;
+    flex-direction: column;
+    /* Stack Label on Top of Value */
+    align-items: center;
+    /* Center text */
+    justify-content: center;
+    flex: 1;
+    /* Equal width columns */
+}
+
+.course-card:not(.expanded) .stat-mini-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    margin-bottom: 0.25rem;
+    color: #a0a0a0;
+}
+
+.course-card:not(.expanded) .stat-mini-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    /* Use monospace if available */
+}
+
+.course-card:not(.expanded) .expand-btn,
+.course-card:not(.expanded) .course-description,
+.course-card:not(.expanded) .course-progress-bar {
+    display: none;
+}
+
+/* Progress bar polish */
+.progress-bar-bg {
+    background: rgba(255, 255, 255, 0.1);
+    height: 4px;
+    border-radius: 2px;
+}
+
+.progress-bar-fill {
+    box-shadow: 0 0 10px currentColor;
+    /* Neon glow */
+    height: 100%;
+    border-radius: 2px;
+}
+
+/* Certificate Badge Polish */
+/* Old .cert-earned block removed to fix duplication */
+.cert-earned {
+    /* Use the new definition later in the file */
+    display: none;
+    /* Fallback if duplicate exists? No, just remove styles */
+    /* Reseting styles just in case, but real fix is using the later definition */
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/* Course Content (Expanded) */
+.course-content {
+    padding: 1.75rem;
+    animation: slideDown 0.4s ease-out;
+}
+
+.course-info-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: var(--spacing-xl);
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+}
+
+.info-col h3 {
+    font-size: 1.1rem;
+    /* Increased from 0.95rem */
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-col p {
+    font-size: 1.05rem;
+    /* Increased from 0.9rem */
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+}
+
+.business-value {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(157, 78, 221, 0.08) 100%);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    color: var(--color-text-primary);
+    font-weight: 600;
+    font-size: 1.05rem;
+    /* Increased from 0.925rem */
+    line-height: 1.5;
+}
+
+/* =====================================================================
+   IMPROVED ROI METRICS
+   ===================================================================== */
+.roi-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.875rem;
+}
+
+.roi-metric {
+    background: linear-gradient(135deg, rgba(255, 214, 10, 0.06) 0%, rgba(255, 153, 0, 0.04) 100%);
+    border: 1px solid rgba(255, 214, 10, 0.15);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    text-align: center;
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.roi-metric::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffd60a, transparent);
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.roi-metric:hover {
+    background: linear-gradient(135deg, rgba(255, 214, 10, 0.1) 0%, rgba(255, 153, 0, 0.08) 100%);
+    border-color: rgba(255, 214, 10, 0.3);
+    transform: translateY(-2px);
+}
+
+.roi-metric:hover::before {
+    opacity: 1;
+}
+
+.roi-label {
+    font-size: 0.8rem;
+    /* Increased from 0.7rem */
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    display: block;
+}
+
+.roi-value {
+    font-size: 1.75rem;
+    /* Increased from 1.5rem */
+    font-weight: 800;
+    color: #ffd60a;
+    font-family: var(--font-display);
+    letter-spacing: -0.5px;
+    text-shadow: 0 0 20px rgba(255, 214, 10, 0.3);
+}
+
+.outcomes-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.outcomes-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 1rem;
+    /* Increased from 0.875rem */
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.outcomes-list svg {
+    margin-top: 0.25rem;
+    flex-shrink: 0;
+    font-size: 0.875rem;
+}
+
+.cert-info {
+    background: linear-gradient(135deg, rgba(255, 214, 10, 0.08) 0%, rgba(255, 153, 0, 0.06) 100%);
+    border: 1px solid rgba(255, 214, 10, 0.2);
+    border-radius: var(--radius-md);
+    padding: 1.125rem;
+    display: flex;
+    gap: 0.875rem;
+    align-items: center;
+    margin-bottom: 0.875rem;
+}
+
+.cert-info svg {
+    flex-shrink: 0;
+}
+
+.cert-info strong {
+    display: block;
+    color: #ffd60a;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+}
+
+.cert-info p {
+    font-size: 0.85rem;
+    margin: 0;
+    color: var(--color-text-secondary);
+}
+
+.compliance-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.compliance-tag {
+    padding: 0.375rem 0.75rem;
+    background: rgba(157, 78, 221, 0.08);
+    border: 1px solid rgba(157, 78, 221, 0.2);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #9d4edd;
+    font-family: var(--font-display);
+    letter-spacing: 0.5px;
+}
+
+/* Phases Section */
+.phases-section {
+    margin-top: 1.5rem;
+}
+
+.phases-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1.125rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-size: 0.875rem;
+}
+
+.phases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.125rem;
+}
+
+/* =====================================================================
+   PHASE CARD
+   ===================================================================== */
+.phase-card {
+    background: linear-gradient(135deg, rgba(21, 27, 40, 0.8) 0%, rgba(15, 20, 25, 0.8) 100%);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    transition: all var(--transition);
+}
+
+.phase-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-border);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.phase-card.completed {
+    border-color: rgba(0, 255, 136, 0.25);
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(21, 27, 40, 0.8) 100%);
+}
+
+.phase-card.locked {
+    opacity: 0.4;
+    filter: grayscale(0.8);
+}
+
+.phase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.375rem;
+}
+
+.phase-number {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--color-text-muted);
+    font-family: var(--font-display);
+}
+
+.phase-check {
+    color: #00ff88;
+    font-size: 1.125rem;
+}
+
+.phase-lock {
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+}
+
+.phase-icon {
+    font-size: 2rem;
+    margin-bottom: 0.625rem;
+    transition: transform var(--transition);
+}
+
+.phase-card:hover .phase-icon {
+    transform: scale(1.12) rotate(-5deg);
+}
+
+.phase-title {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+    min-height: 2.7em;
+}
+
+.phase-description {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+    margin-bottom: 0.625rem;
+    min-height: 3.1em;
+}
+
+.phase-meta {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--color-border-light);
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    font-weight: 600;
+}
+
+.phase-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-top: auto;
+}
+
+.topic-tag {
+    padding: 0.25rem 0.625rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-sm);
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+.phase-btn {
+    width: 100%;
+    padding: 0.875rem;
+    margin-top: 0.625rem;
+    background: var(--btn-color);
+    color: #000;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all var(--transition);
+}
+
+.phase-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    filter: brightness(1.1);
+}
+
+.phase-btn:disabled {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+}
+
+/* =====================================================================
+   RESPONSIVE DESIGN
+   ===================================================================== */
+@media (max-width: 1200px) {
+    .stats-dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .phases-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+
+    .brand-title {
+        font-size: 1.375rem;
+    }
+
+    .brand-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .stats-dashboard {
+        grid-template-columns: 1fr;
+        gap: 0.875rem;
+    }
+
+    .stat-card {
+        padding: 1.25rem;
+    }
+
+    .search-controls {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .search-bar {
+        max-width: 100%;
+    }
+
+    .filter-toggle {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .course-header {
+        flex-direction: column;
+    }
+
+    .course-meta {
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .course-info-section {
+        grid-template-columns: 1fr;
+    }
+
+    .roi-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .phases-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =====================================================================
+   SCROLLBAR STYLING
+   ===================================================================== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* =====================================================================
+   COMING SOON PLACEHOLDER
+   ===================================================================== */
+/* =====================================================================
+   COMING SOON PLACEHOLDER - APPLE ELEGANT
+   ===================================================================== */
+.career-path-coming-soon {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-xl);
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Subtle detailed background noise/mesh */
+.career-path-coming-soon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    z-index: 0;
+    pointer-events: none;
+}
+
+.coming-soon-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 500px;
+    padding: 4rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+        0 20px 40px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 2rem;
+}
+
+.coming-soon-icon {
+    font-size: 3.5rem;
+    background: linear-gradient(180deg, #ffffff 0%, #8b92a8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
+}
+
+.coming-soon-title {
+    font-family: var(--font-primary);
+    /* Switch to Inter/San Francisco */
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    /* Removed neon glow */
+    animation: none;
+    /* Removed glitch */
+}
+
+.coming-soon-subtitle {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ff3b30;
+    /* Apple System Red, muted */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    background: rgba(255, 59, 48, 0.1);
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 59, 48, 0.2);
+}
+
+.coming-soon-desc {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+}
+
+.coming-soon-lock-anim {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.3);
+    animation: pulse-fade 3s ease-in-out infinite;
+}
+
+@keyframes pulse-fade {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+}
+
+.coming-soon-badge-mini {
+    background: linear-gradient(135deg, #ff0055 0%, #ff0077 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255, 0, 85, 0.4) !important;
+    animation: pulse-badge 2s infinite !important;
+    color: #ffffff !important;
+    font-family: var(--font-display) !important;
+    letter-spacing: 0.5px;
+    font-size: 0.55rem !important;
+    padding: 2px 6px !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    border-bottom-left-radius: 6px;
+}

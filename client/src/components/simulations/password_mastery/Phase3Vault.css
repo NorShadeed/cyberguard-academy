@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* High Specificity Global Override */
+html body #root .p3-container {
+    width: 100%;
+    height: 100%;
+    background: var(--simulation-bg);
+    background-repeat: repeat;
+    background-size: 512px 512px;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    overflow: hidden;
+    padding: 100px 20px 20px 20px !important;
+    /* Force top padding to push content down */
+    box-sizing: border-box;
+}
+
+/* APP FRAME */
+.p3-vault-app {
+    width: 1000px;
+    height: 650px;
+    background: #1e293b;
+    border-radius: 24px;
+    box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.6);
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* SIDEBAR */
+.p3-sidebar {
+    width: 260px;
+    background: #0f172a;
+    border-right: 1px solid #334155;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.p3-app-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 40px;
+}
+
+.p3-brand-icon {
+    color: #3b82f6;
+}
+
+.p3-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.p3-nav-item:hover,
+.p3-nav-item.active {
+    background: #1e293b;
+    color: #fff;
+}
+
+.p3-badge {
+    margin-left: auto;
+    background: #3b82f6;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    color: #fff;
+}
+
+.p3-security-card {
+    margin-top: auto;
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid #334155;
+}
+
+.p3-score-ring {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 4px solid #3b82f6;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.5s;
+}
+
+.p3-score-num {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.p3-score-label {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+/* MAIN CONTENT */
+.p3-main-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #1e293b;
+}
+
+.p3-header {
+    padding: 24px 32px;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.p3-header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.p3-search-bar {
+    background: #0f172a;
+    padding: 10px 16px;
+    border-radius: 8px;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 250px;
+    font-size: 0.9rem;
+}
+
+.p3-item-list {
+    padding: 20px 32px;
+    overflow-y: auto;
+}
+
+.p3-vault-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background: #2e3b4e;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.p3-vault-item:hover {
+    transform: translateY(-2px);
+    border-color: #3b82f6;
+    background: #334155;
+}
+
+.p3-item-icon {
+    width: 48px;
+    height: 48px;
+    background: #475569;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-right: 16px;
+}
+
+.p3-item-details {
+    flex: 1;
+}
+
+.p3-item-name {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.p3-item-user {
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.p3-tag {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.p3-tag.critical {
+    background: rgba(220, 38, 38, 0.2);
+    color: #f87171;
+}
+
+.p3-tag.warning {
+    background: rgba(234, 179, 8, 0.2);
+    color: #fbbf24;
+}
+
+.p3-tag.secure {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+}
+
+.p3-scanning-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    color: #94a3b8;
+    gap: 20px;
+    font-size: 1.1rem;
+}
+
+.p3-spin {
+    animation: spin 1s linear infinite;
+    font-size: 2rem;
+    color: #3b82f6;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* RIGHT PANEL */
+.p3-detail-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 350px;
+    height: 100%;
+    background: #1e293b;
+    /* Matches main bg for seamless feel, or darken for contrast */
+    border-left: 1px solid #334155;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.p3-detail-header {
+    padding: 24px;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.p3-detail-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.p3-close-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.p3-detail-content {
+    padding: 24px;
+    flex: 1;
+}
+
+.p3-issue-box {
+    background: rgba(220, 38, 38, 0.1);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    padding: 16px;
+    border-radius: 8px;
+    color: #f87171;
+    margin-bottom: 24px;
+}
+
+.p3-issue-box h3 {
+    margin: 0 0 8px 0;
+    font-size: 0.95rem;
+}
+
+.p3-issue-box p {
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.p3-generate-btn {
+    width: 100%;
+    padding: 14px;
+    background: #3b82f6;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.p3-generate-btn:hover {
+    background: #2563eb;
+}
+
+.p3-preview-pass {
+    margin-top: 12px;
+    background: #0f172a;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
+    color: #cbd5e1;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.p3-biometric-scan {
+    border: 2px dashed #94a3b8;
+    border-radius: 12px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #94a3b8;
+}
+
+.p3-biometric-scan:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.p3-fingerprint {
+    font-size: 3rem;
+}
+
+.p3-success-msg {
+    text-align: center;
+    color: #34d399;
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+/* SUCCESS OVERLAY */
+.p3-success-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.p3-success-modal {
+    text-align: center;
+    animation: scaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.p3-huge-icon {
+    font-size: 5rem;
+    color: #10b981;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.4));
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

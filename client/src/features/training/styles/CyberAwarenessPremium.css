@@ -1,0 +1,380 @@
+/* ============================================================================
+   PREMIUM ENHANCEMENT LAYER - Apple-Inspired Elegance
+   Added: Advanced animations, glassmorphism, premium shadows, smooth transitions
+   ============================================================================ */
+
+/* Enhanced Card with Glassmorphism */
+.card-icon-header.green {
+    background: rgba(0, 255, 136, 0.15);
+    color: #00ff88;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.15),
+        inset 0 0 20px rgba(0, 255, 136, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+/* Premium Interactive Cards - Enhanced */
+.cr-card-interactive {
+    background: linear-gradient(135deg, rgba(15, 23, 36, 0.95) 0%, rgba(20, 30, 48, 0.9) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cr-card-interactive::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.cr-card-interactive:hover::after {
+    opacity: 1;
+}
+
+.cr-card-interactive:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6),
+        0 8px 16px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(0, 212, 255, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced Icon Header Animation */
+.card-icon-header {
+    position: relative;
+    overflow: visible;
+}
+
+.card-icon-header::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(circle, currentColor 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    filter: blur(20px);
+}
+
+.cr-card-interactive:hover .card-icon-header::before {
+    opacity: 0.2;
+}
+
+/* Premium Section Headers */
+.cr-section-header {
+    position: relative;
+    padding: 20px 0;
+    background: linear-gradient(90deg,
+            rgba(0, 212, 255, 0.05) 0%,
+            rgba(0, 212, 255, 0) 100%);
+    border-left: 4px solid #00d4ff;
+    padding-left: 20px;
+    margin-left: -20px;
+}
+
+.cr-section-header::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg,
+            #00d4ff 0%,
+            transparent 100%);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* Smooth Micro-Example Animation */
+.cr-micro-example {
+    animation: slideInFromBottom 0.5s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.cr-micro-example::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 71, 87, 0.1) 50%,
+            transparent 100%);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Enhanced Mission Display */
+.cr-mission-display {
+    background: radial-gradient(ellipse at center,
+            rgba(0, 212, 255, 0.08) 0%,
+            transparent 70%);
+    position: relative;
+}
+
+.cr-mission-display::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.2) 50%,
+            transparent 100%);
+}
+
+.mission-icon-static {
+    filter: drop-shadow(0 0 30px rgba(0, 255, 136, 0.4));
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Premium Brief Cards */
+.brief-col {
+    background: linear-gradient(135deg,
+            rgba(20, 30, 48, 0.6) 0%,
+            rgba(15, 23, 36, 0.8) 100%);
+    backdrop-filter: blur(15px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.brief-col:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(0, 212, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced Button Hover Effects */
+.cr-btn-mock {
+    position: relative;
+    overflow: hidden;
+}
+
+.cr-btn-mock::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.cr-btn-mock:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Smooth URL Reveal */
+.url-reveal {
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.url-reveal.safe {
+    background: linear-gradient(135deg,
+            rgba(0, 255, 136, 0.15) 0%,
+            rgba(0, 255, 136, 0.05) 100%);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
+}
+
+.url-reveal.danger {
+    background: linear-gradient(135deg,
+            rgba(255, 71, 87, 0.15) 0%,
+            rgba(255, 71, 87, 0.05) 100%);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    box-shadow: 0 0 20px rgba(255, 71, 87, 0.1);
+}
+
+.url-reveal.warning {
+    background: linear-gradient(135deg,
+            rgba(255, 193, 7, 0.15) 0%,
+            rgba(255, 193, 7, 0.05) 100%);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.1);
+}
+
+/* Enhanced Test Items */
+.test-item {
+    background: linear-gradient(135deg,
+            rgba(15, 23, 36, 0.95) 0%,
+            rgba(20, 30, 48, 0.9) 100%);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.test-item:hover {
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(0, 212, 255, 0.2);
+}
+
+/* Premium Typography - Smooth Rendering */
+.cr-lesson-container h1,
+.cr-lesson-container h2,
+.cr-lesson-container h3,
+.cr-lesson-container h4 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced Vishing Console */
+.cr-vishing-console {
+    background: linear-gradient(135deg,
+            rgba(15, 23, 42, 0.8) 0%,
+            rgba(20, 30, 55, 0.9) 100%);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+.wave-line {
+    box-shadow: 0 0 10px currentColor;
+}
+
+/* Premium Phone Screen */
+.cr-phone-screen {
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6),
+        0 10px 30px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced Scenario Steps */
+.scenario-step::before {
+    box-shadow: 0 0 20px currentColor,
+        0 0 40px rgba(0, 212, 255, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* Smooth transitions for all interactive elements */
+.cr-card,
+.cr-concept-card,
+.brief-col,
+.test-item,
+.cr-card-interactive {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Enhanced Final Warning */
+.cr-final-warning {
+    background: linear-gradient(135deg,
+            rgba(255, 71, 87, 0.15) 0%,
+            rgba(255, 71, 87, 0.08) 100%);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 71, 87, 0.3);
+    box-shadow: 0 8px 32px rgba(255, 71, 87, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.cr-final-warning::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            transparent 100%);
+    animation: warningShimmer 4s infinite;
+}
+
+@keyframes warningShimmer {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+/* Performance Optimizations */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

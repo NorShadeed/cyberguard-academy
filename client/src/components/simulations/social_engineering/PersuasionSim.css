@@ -1,0 +1,307 @@
+/* PersuasionSim.css */
+:root {
+    --ps-bg: #0c0a09;
+    --ps-panel: #1c1917;
+    --ps-accent-trust: #10b981;
+    /* Emerald */
+    --ps-accent-warn: #f59e0b;
+    /* Amber */
+    --ps-accent-danger: #ef4444;
+    /* Red */
+    --ps-text-main: #e7e5e4;
+    --ps-text-dim: #a8a29e;
+    --ps-font-mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+/* High Specificity Global Override */
+html body #root .ps-container {
+    background: var(--simulation-bg);
+    background-repeat: repeat;
+    background-size: 512px 512px;
+    background-attachment: fixed;
+    color: var(--ps-text-main);
+    font-family: var(--ps-font-mono);
+    padding: 100px 0 0 0 !important;
+    /* Force top padding */
+    border-radius: 8px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #333;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* --- HUD Header --- */
+.ps-hud-header {
+    background: #111;
+    border-bottom: 2px solid #222;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ps-hud-title {
+    font-size: 14px;
+    color: #666;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ps-rec-dot {
+    width: 10px;
+    height: 10px;
+    background: red;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* --- Main Grid --- */
+.ps-main-grid {
+    display: grid;
+    grid-template-rows: 1fr 240px;
+    /* Visualizer Top, Controls Bottom */
+    flex: 1;
+}
+
+/* --- Top: Visualizer --- */
+.ps-visualizer {
+    position: relative;
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #333;
+}
+
+.ps-target-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: #444;
+    background: #111;
+    z-index: 2;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    transition: all 0.5s ease;
+}
+
+.ps-target-avatar.talking {
+    border-color: var(--ps-accent-warn);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.ps-wave-container {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+    opacity: 0.3;
+}
+
+.ps-wave-bar {
+    width: 4px;
+    background: var(--ps-accent-warn);
+    border-radius: 2px;
+    animation: waveEqualizer 0.5s infinite ease-in-out;
+}
+
+@keyframes waveEqualizer {
+
+    0%,
+    100% {
+        height: 10px;
+    }
+
+    50% {
+        height: 40px;
+    }
+}
+
+/* --- Meters --- */
+.ps-meters-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ps-meter-box {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #333;
+    width: 180px;
+}
+
+.ps-meter-label {
+    font-size: 10px;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ps-meter-bar-bg {
+    height: 6px;
+    background: #222;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.ps-meter-fill {
+    height: 100%;
+    background: #555;
+    transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+/* --- Dialogue/Controls Area --- */
+.ps-controls {
+    background: #111;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ps-transcript-box {
+    flex: 1;
+    min-height: 60px;
+    color: var(--ps-accent-warn);
+    font-size: 14px;
+    line-height: 1.5;
+    background: #000;
+    padding: 10px;
+    border: 1px dashed #333;
+    margin-bottom: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.ps-options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.ps-dialogue-btn {
+    background: #1c1917;
+    border: 1px solid #333;
+    color: #888;
+    padding: 15px;
+    text-align: left;
+    font-family: var(--ps-font-mono);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ps-dialogue-btn:hover:not(:disabled) {
+    background: #292524;
+    border-color: #666;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.ps-dialogue-btn.aggressive:hover {
+    border-color: var(--ps-accent-danger);
+}
+
+.ps-dialogue-btn.friendly:hover {
+    border-color: var(--ps-accent-trust);
+}
+
+.ps-dialogue-btn.neutral:hover {
+    border-color: var(--ps-accent-warn);
+}
+
+.ps-dialogue-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* --- End Screens --- */
+.ps-end-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    text-align: center;
+}
+
+.ps-end-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    margin-bottom: 15px;
+    letter-spacing: 4px;
+}
+
+.ps-stat-grid {
+    display: flex;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.ps-stat {
+    text-align: center;
+}
+
+.ps-stat-val {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.ps-stat-label {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.ps-btn-primary {
+    background: var(--ps-text-main);
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: var(--ps-font-mono);
+}
+
+.ps-btn-primary:hover {
+    opacity: 0.9;
+}

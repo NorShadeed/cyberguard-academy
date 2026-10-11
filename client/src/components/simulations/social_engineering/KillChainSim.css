@@ -1,0 +1,455 @@
+/* KillChainSim.css */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;800&display=swap');
+
+/* High Specificity Global Override */
+html body #root .kill-chain-container {
+    background: var(--simulation-bg);
+    background-repeat: repeat;
+    background-size: 512px 512px;
+    background-attachment: fixed;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 100px 32px 32px 32px !important;
+    /* Force top padding */
+    font-family: 'Inter', sans-serif;
+    color: #e0e0e0;
+    position: relative;
+    overflow: hidden;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Background Grid Effect - Subtle & Premium */
+.kill-chain-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+    background-size: 100% 4px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Header */
+.kc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--kc-border);
+    padding-bottom: 16px;
+}
+
+.kc-title-block h2 {
+    font-family: var(--kc-font-header);
+    color: var(--kc-primary);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+}
+
+.kc-subtitle {
+    font-family: var(--kc-font-mono);
+    color: #888;
+    font-size: 0.9em;
+}
+
+.kc-status-badge {
+    background: rgba(255, 71, 87, 0.1);
+    border: 1px solid var(--kc-primary);
+    color: var(--kc-primary);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: var(--kc-font-mono);
+    font-size: 0.8rem;
+    box-shadow: 0 0 10px rgba(255, 71, 87, 0.2);
+}
+
+/* --- The Layout Grid (Left: Terminal, Center: Action, Right: Intel) --- */
+.kc-layout-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr 280px;
+    gap: 20px;
+    height: 700px;
+}
+
+/* --- Panel 1: The Terminal (Left) --- */
+.kc-panel-terminal {
+    background: #000;
+    border: 1px solid #333;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--kc-font-mono);
+    font-size: 13px;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.kc-term-header {
+    background: #1a1a1a;
+    padding: 8px 12px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    gap: 6px;
+}
+
+.kc-term-header .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.dot.red {
+    background: #ff5f56;
+}
+
+.dot.yellow {
+    background: #ffbd2e;
+}
+
+.dot.green {
+    background: #27c93f;
+}
+
+.kc-term-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    color: #0f0;
+    /* Basic Green terminal text */
+}
+
+/* Log Types */
+.log-entry {
+    margin-bottom: 6px;
+    line-height: 1.4;
+    opacity: 0;
+    animation: fadeIn 0.1s forwards;
+}
+
+.log-entry.info {
+    color: #ccc;
+}
+
+.log-entry.success {
+    color: var(--kc-accent);
+}
+
+.log-entry.error {
+    color: var(--kc-primary);
+    font-weight: bold;
+}
+
+.log-entry.cmd {
+    color: var(--kc-system);
+    margin-top: 10px;
+}
+
+.log-entry.system {
+    color: #f39c12;
+    font-style: italic;
+}
+
+/* Typing cursor */
+.cursor-blink {
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* --- Panel 2: The Action Center (Center) --- */
+.kc-panel-main {
+    background: var(--kc-panel-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.kc-phase-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.kc-phase-indicator::after {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #333;
+    z-index: 1;
+}
+
+.kc-step-dot {
+    width: 36px;
+    height: 36px;
+    background: #222;
+    border: 2px solid #555;
+    border-radius: 50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-weight: bold;
+    font-family: var(--kc-font-mono);
+    transition: all 0.3s ease;
+}
+
+.kc-step-dot.active {
+    border-color: var(--kc-primary);
+    background: #3a1114;
+    color: var(--kc-primary);
+    box-shadow: 0 0 15px rgba(255, 71, 87, 0.4);
+}
+
+.kc-step-dot.done {
+    border-color: var(--kc-accent);
+    background: #0f2;
+    color: #000;
+}
+
+.kc-main-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Choice Cards (Recon Phase) */
+.kc-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.kc-target-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.kc-target-card:hover {
+    background: rgba(255, 71, 87, 0.1);
+    border-color: var(--kc-primary);
+    transform: translateY(-2px);
+}
+
+.kc-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #333;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #fff;
+    border: 2px solid #555;
+}
+
+/* Tool Cards */
+.kc-tool-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.kc-tool-card {
+    flex: 1;
+    background: #111;
+    border: 1px solid #333;
+    padding: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.kc-tool-card:hover {
+    border-color: var(--kc-system);
+    background: rgba(0, 212, 255, 0.1);
+}
+
+.kc-tool-icon {
+    font-size: 20px;
+    color: var(--kc-system);
+}
+
+/* --- Panel 3: Intel Dashboard (Right) --- */
+.kc-panel-intel {
+    background: rgba(0, 212, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    padding: 15px;
+    font-family: var(--kc-font-mono);
+}
+
+.kc-intel-header {
+    color: var(--kc-system);
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.kc-data-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 13px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-bottom: 4px;
+}
+
+.kc-data-label {
+    color: #666;
+}
+
+.kc-data-value {
+    color: #fff;
+    font-weight: bold;
+}
+
+.kc-data-value.redacted {
+    color: transparent;
+    background: #333;
+    border-radius: 2px;
+    width: 60px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 10px var(--kc-primary);
+    }
+
+    100% {
+        opacity: 0.8;
+    }
+}
+
+.loading-fill {
+    height: 100%;
+    background: #ff4757;
+    width: 0%;
+    box-shadow: 0 0 10px #ff4757;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- Missing Components --- */
+.loading-bar {
+    width: 100%;
+    height: 4px;
+    background: #222;
+    margin-top: 16px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.kc-btn-action {
+    background: linear-gradient(135deg, #ff4757 0%, #d43644 100%);
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    font-family: var(--kc-font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+}
+
+.kc-btn-action:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 71, 87, 0.6);
+}
+
+.kc-btn-action:disabled {
+    background: #333;
+    color: #666;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* --- Terminal Monitor (New) --- */
+.terminal-monitor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    animation: fadeIn 0.5s ease;
+}
+
+.pulse-icon {
+    animation: pulse 1.5s infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 71, 87, 0.6));
+}

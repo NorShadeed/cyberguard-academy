@@ -1,0 +1,206 @@
+/* InvisibleYouSim.css */
+/* High Specificity Global Override */
+html body #root .scrubber-container {
+    width: 100%;
+    height: 100%;
+    background: var(--simulation-bg);
+    background-repeat: repeat;
+    background-size: 512px 512px;
+    background-attachment: fixed;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px 20px 20px !important;
+    /* Force top padding */
+    box-sizing: border-box;
+}
+
+.terminal-frame {
+    width: 800px;
+    height: 600px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.terminal-header-bar {
+    height: 30px;
+    background: #222;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 8px;
+}
+
+.traffic-light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.red {
+    background: #ff5f56;
+}
+
+.yellow {
+    background: #ffbd2e;
+}
+
+.green {
+    background: #27c93f;
+}
+
+.term-title {
+    color: #888;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.term-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- DASHBOARD GRID --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    height: 100%;
+}
+
+.panel {
+    border: 1px dashed #333;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-title {
+    color: #fff;
+    background: #222;
+    padding: 5px 10px;
+    margin: -15px -15px 15px -15px;
+    border-bottom: 1px dashed #333;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* --- PROFILE SCANNER --- */
+.profile-card {
+    background: #111;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.post-item {
+    border-left: 2px solid #333;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    font-family: sans-serif;
+    color: #ccc;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    color: #888;
+    font-size: 11px;
+}
+
+.redact-btn {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    padding: 2px 8px;
+    font-size: 10px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.redacted {
+    background: #000;
+    color: #000;
+    user-select: none;
+}
+
+.redacted::after {
+    content: '[REDACTED]';
+    color: #f00;
+    font-weight: bold;
+}
+
+/* --- BROKER LIST --- */
+.broker-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #222;
+}
+
+.broker-name {
+    color: #ccc;
+}
+
+.status-indicator {
+    padding: 2px 6px;
+    font-size: 10px;
+    border-radius: 4px;
+}
+
+.exposed {
+    background: #ef4444;
+    color: #fff;
+}
+
+.clean {
+    background: #10b981;
+    color: #fff;
+}
+
+.action-btn {
+    background: transparent;
+    border: 1px solid #3b82f6;
+    color: #3b82f6;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 11px;
+    padding: 2px 8px;
+}
+
+.action-btn:hover {
+    background: #3b82f6;
+    color: #fff;
+}
+
+/* --- PRIVACY SCORE --- */
+.score-display {
+    text-align: center;
+    margin-top: auto;
+}
+
+.score-val {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.score-label {
+    color: #888;
+    font-size: 12px;
+}

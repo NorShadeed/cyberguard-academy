@@ -1,0 +1,22 @@
+/* EMERGENCY CSS - FORCE TRANSPARENT BACKGROUNDS */
+.integrated-header,
+.header-grid-content,
+.header-left,
+.header-right,
+.briefing-panel,
+.status-grid,
+.grid-stat,
+.role-chip,
+.reactor-glow,
+.title-block,
+.briefing-text,
+.obj-container,
+.status-module,
+.career-path-container::before,
+.career-path-container::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}

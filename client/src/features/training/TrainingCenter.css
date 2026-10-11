@@ -1,0 +1,46 @@
+/* Training Center Container */
+.training-center {
+    padding-top: 0;
+    min-height: 100vh;
+    background: var(--bg-darker);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Subtle animated gradient overlay */
+.training-center::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at 30% 20%, rgba(131, 56, 236, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(255, 0, 110, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Grid overlay */
+.training-center::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        linear-gradient(90deg, rgba(0, 245, 212, 0.015) 1px, transparent 1px),
+        linear-gradient(rgba(0, 245, 212, 0.015) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.training-center>* {
+    position: relative;
+    z-index: 1;
+}
